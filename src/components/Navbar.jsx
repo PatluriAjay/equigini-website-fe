@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Button from "./Button";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -60,7 +61,10 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive =
               link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-            
+            // Add handler to close menu on mobile
+            const handleLinkClick = () => {
+              if (isMenuOpen) setIsMenuOpen(false);
+            };
             return (
               <li key={link.href}>
                 <Link
@@ -68,6 +72,7 @@ export default function Navbar() {
                   className={`text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 font-semibold transition-colors 
                     hover:underline hover:decoration-purple-600 hover:underline-offset-8
                     ${isActive ? "underline decoration-purple-600 underline-offset-8" : ""}`}
+                  onClick={handleLinkClick}
                 >
                   {link.label}
                 </Link>
@@ -81,11 +86,14 @@ export default function Navbar() {
           isMenuOpen ? 'flex' : 'hidden'
         } lg:flex w-full lg:w-[180px] items-center justify-center lg:justify-end mt-4 lg:mt-0 lg:ml-auto`}>
           {/* Login/Register Button */}
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors w-full lg:w-auto whitespace-nowrap">
+          {/* <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors w-full lg:w-auto whitespace-nowrap">
             Login / Register
-          </button>
+          </button> */}
+          <Button className="w-full lg:w-auto" variant="primaryoutline">
+             Login / Register
+          </Button>
         </div>
       </div>
     </nav>
   );
-} 
+}

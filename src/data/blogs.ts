@@ -1,7 +1,7 @@
 export const blogs = [
   {
     id: 1,
-    title: "AI Investments: Trends and Opportunities",
+    title: "AI Investments: Trends and Deals",
     description: "Explore the latest in AI/ML investments and what to expect next.",
     imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
   },

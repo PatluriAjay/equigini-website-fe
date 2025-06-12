@@ -1,4 +1,4 @@
-"use client"  
+  "use client"  
 import { notFound, useParams } from "next/navigation";
 import { blogs } from "@/data/blogs";
 import Image from "next/image";
@@ -10,7 +10,7 @@ const blogContent = [
       role: "Investment Analyst",
       // avatar: "/team/madhu.jpg"
     },
-    title: 'AI Investments: Trends and Opportunities',
+    title: 'AI Investments: Trends and Deals',
     slug: 'ai-investments',
     publishDate: "2025-06-11",
     category: "Investment Insights",
@@ -66,7 +66,7 @@ export default function BlogDetailPage() {
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-800 dark:to-gray-900 py-16 mb-10">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-5xl text-center font-extrabold text-gray-900 dark:text-white mb-6">{blog.title}</h1>
+          <h1 className="banner-heading text-center">{blog.title}</h1>
             
           <div className="mx-auto">
             <div className="flex items-center justify-center text-center gap-4 mb-6">
@@ -79,16 +79,16 @@ export default function BlogDetailPage() {
                 />
               </div>}
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">{author.name}</h3>
+                <h3 className="banner-subheading font-semibold">{author.name}</h3>
                 {/* <p className="text-sm text-gray-600 dark:text-gray-400">{author.role}</p> */}
               </div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <span>{formattedDate}</span>
-              <span>•</span>
-              <span>{readTime}</span>
-              <span>•</span>
-              <span className="text-purple-600 dark:text-purple-400">{category}</span>
+              <span className="card-paragraph">{formattedDate}</span>
+              <span className="card-paragraph">•</span>
+              <span className="card-paragraph">{readTime}</span>
+              <span className="card-paragraph">•</span>
+              <span className="text-sm flex items-center text-purple-600 dark:text-purple-400">{category}</span>
             </div>
           </div>
         </div>
@@ -109,15 +109,15 @@ export default function BlogDetailPage() {
           </div>
 
           {/* Main Content */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 space-y-8">
+          <div className="rounded-2xl md:shadow-lg md:p-8 space-y-8">
             {content.map((block, idx) => {
             switch (block.type) {
               case "h2":
-                return <h2 key={idx} className="text-2xl font-semibold mt-12 mb-6 text-gray-900 dark:text-white">{block.text}</h2>;
+                return <h2 key={idx} className="section-heading text-start-override">{block.text}</h2>;
               case "h3":
                 return <h3 key={idx} className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">{block.text}</h3>;
               case "p":
-                return <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">{block.text}</p>;
+                return <p key={idx} className="section-paragraph text-start-override">{block.text}</p>;
               case "blockquote":
                 return (
                   <blockquote key={idx} className="border-l-4 border-purple-600 pl-4 my-6 italic text-gray-700 dark:text-gray-300">
@@ -126,7 +126,7 @@ export default function BlogDetailPage() {
                 );
               case "list":
                 return (
-                  <ul key={idx} className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <ul key={idx} className="list-disc list-inside space-y-2 section-container-paragraph">
                     {block.items.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
@@ -153,8 +153,8 @@ export default function BlogDetailPage() {
               case "conclusion":
                 return (
                   <div key={idx} className="mt-12 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
-                    <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Conclusion</h2>
-                    <p className="text-gray-700 dark:text-gray-300">{block.text}</p>
+                    <h2 className="section-heading text-start-override">Conclusion</h2>
+                    <p className="section-paragraph text-start-override">{block.text}</p>
                   </div>
                 );
               default:

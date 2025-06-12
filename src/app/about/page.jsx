@@ -24,19 +24,19 @@ export default function AboutPage() {
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-black mb-5 drop-shadow">About <span className="text-primary">EquiGini</span></h1>
-          <p className="text-lg text-black-100 max-w-2xl mx-auto">
+          <h1 className="banner-heading">About <span className="text-primary">EquiGini</span></h1>
+          <p className="banner-subheading">
             EquiGini is committed to connecting investors with premium opportunities across sectors. Our mission is to make investing accessible, transparent, and rewarding for everyone.
           </p>
           {/* <Button variant="primary" className="mt-6">Contact Us</Button> */}
         </div>
       </div>
     </div>
-    <div className="bg-white py-20">
+    <div className="bg-white /py-10 md:py-20">
       <div className="container mx-auto px-4">
           {/* Our Values */}
           <section>
-            <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Our Values</h2>
+            <h2 className="section-heading">Our Values</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               <ValuesCard title="Transparency" description="We believe in open and honest communication at every step." />
               <ValuesCard title="Accessibility" description="Investment opportunities for all, regardless of background." />
@@ -45,11 +45,11 @@ export default function AboutPage() {
           </section>
       </div>
       </div>
-      <div className="bg-gray-100 py-20">
+      <div className="bg-gray-100 py-10 md:py-20">
           <div className="container mx-auto px-4">
           {/* Meet the Team */}
           <section>
-            <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Meet the Team</h2>
+            <h2 className="section-heading">Meet the Team</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {team.map((member) => (
                 <TeamCard

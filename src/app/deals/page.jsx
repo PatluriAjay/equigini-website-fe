@@ -75,13 +75,13 @@ export default function DealsPage() {
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-black mb-5 drop-shadow">Deals</h1>
-          <p className="text-lg text-black-100 max-w-2xl mx-auto">
+          <h1 className="banner-heading">Deals</h1>
+          <p className="banner-subheading">
             Discover exclusive investment opportunities curated for you.
           </p>
         </div>
       </div>
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-10 md:py-20">
         {/* Filters */}
         <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           <div>
@@ -150,13 +150,13 @@ export default function DealsPage() {
           {dealsToShow.map((deal) => (
             <div key={deal.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 dark:border-gray-700 p-6 flex flex-col">
                           <div className="flex items-start mb-6 gap-3">
-                            <div className="w-14 h-14 bg-purple-100 dark:bg-purple-900/50 rounded-2xl flex items-center justify-center">
-                              <svg className="w-7 h-7 text-purple-600 dark:text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <div className="card-icon-div">
+                              <svg className="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"> 
                                 {DealIconMap[deal.sector]}
                               </svg>
                             </div>
                             <div>
-                              <h3 className="text-l font-semibold mb-0">{deal.name}</h3>
+                              <h3 className=" card-heading text-lg-override ">{deal.name}</h3>
                               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                                 deal.status === 'Open' 
                                   ? 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
@@ -167,13 +167,13 @@ export default function DealsPage() {
                             </div>
                           </div>
                           <div className="space-y-3 mb-6 flex-grow">
-                            <div className="flex items-center text-gray-600 dark:text-gray-300">
+                            <div className="card-paragraph">
                               <span className="text-sm">Sector: {deal.sector}</span>
                             </div>
-                            <div className="flex items-center text-gray-600 dark:text-gray-300">
+                            <div className="card-paragraph">
                               <span className="text-sm">Stage: {deal.stage}</span>
                             </div>
-                            <div className="flex items-center text-gray-600 dark:text-gray-300">
+                            <div className="card-paragraph">
                               <span className="text-sm">Ticket Size: {deal.range}</span>
                             </div>
                           </div>
@@ -182,7 +182,7 @@ export default function DealsPage() {
                             className="w-full"
                             disabled={deal.status === 'Closed'}
                           >
-                            Login to View More
+                            Know More
                           </Button>
                         </div>
           ))}

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Button from "./Button";
 
-export default function Footer() {
+export default function FooterV2() {
   const handleSubscribe = (e) => {
     e.preventDefault();
     // Handle newsletter subscription
@@ -11,9 +11,9 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white py-10 md:py-20">
       <div className="container mx-auto px-6 md:px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Description */}
-          <div className="col-span-1">
+          <div className="col-span-2 md:col-span-1">
             <h3 className="text-2xl text-purple font-bold mb-4">EquiGini</h3>
             <p className="text-gray-400 mb-6">
               Curated private investment opportunities for discerning investors.
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
 
           {/* Social Links */}
-          <div className="col-span-1">
+          <div className="col-span-2 md:col-span-1">
             <h4 className="text-lg font-semibold mb-6">Follow Us On</h4>
             <div className="flex gap-6">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-600">

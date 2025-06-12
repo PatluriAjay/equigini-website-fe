@@ -49,13 +49,13 @@ export default function BlogsPage() {
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-black mb-5 drop-shadow">Blogs</h1>
-          <p className="text-lg text-black-100 max-w-2xl mx-auto">
+          <h1 className="banner-heading">Blogs</h1>
+          <p className="banner-subheading">
             Explore our latest insights, news, and investment tips.
           </p>
         </div>
       </div>
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-10 md:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {blogsToShow.map((blog, idx) => (
             <div key={blog.id}>

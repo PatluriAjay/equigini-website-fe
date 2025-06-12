@@ -11,47 +11,47 @@ export default function ContactPage() {
     <>
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-black">
-        <div className="container mx-auto px-4 py-20">
+        <div className="container mx-auto px-4 py-10 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="banner-heading">
               Get in Touch with <span className="text-purple-600">EquiGini</span>
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Have questions about investment opportunities or need support? We&#39;re here to help you navigate private investments with confidence.
+            <p className="banner-subheading">
+              Have questions about investment opportunities or need support? We're here to help you navigate private investments with confidence.
             </p>
           </div>
         </div>
       </div>
 
       {/* Contact Form Section */}
-      <div className="bg-white dark:bg-gray-900 py-20">
+      <div className="bg-white dark:bg-gray-900 py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold mb-8">Contact Information</h2>
+              <h2 className="section-heading text-start-override">Contact Information</h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Office Address</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <h3 className="card-heading mb-2">Office Address</h3>
+                  <p className="card-paragraph">
                     123 Investment Avenue<br />
                     Financial District<br />
                     Mumbai, 400001
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-                  <a href="mailto:info@equigini.com" className="text-purple-600 hover:text-purple-700">
+                  <h3 className="card-heading mb-2">Email Us</h3>
+                  <a href="mailto:info@equigini.com" className="text-purple-600 hover:text-purple-700 text-sm">
                     info@equigini.com
                   </a>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-                  <p className="text-gray-600 dark:text-gray-300">+91 (123) 456-7890</p>
+                  <h3 className="card-heading mb-2">Call Us</h3>
+                  <p className="card-paragraph">+91 (123) 456-7890</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Business Hours</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <h3 className="card-heading mb-2">Business Hours</h3>
+                  <p className="card-paragraph">
                     Monday - Friday: 9:00 AM - 6:00 PM IST<br />
                     Saturday - Sunday: Closed
                   </p>
@@ -61,10 +61,10 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
-              <h2 className="text-3xl font-bold mb-8">Send Us a Message</h2>
+              <h2 className="section-heading text-start-override">Send Us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="name" className="block card-subheading">
                     Full Name
                   </label>
                   <input
@@ -75,7 +75,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="email" className="block card-subheading">
                     Email Address
                   </label>
                   <input
@@ -86,7 +86,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="subject" className="block card-subheading">
                     Subject
                   </label>
                   <input
@@ -97,7 +97,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="message" className="block card-subheading">
                     Message
                   </label>
                   <textarea
@@ -121,33 +121,33 @@ export default function ContactPage() {
       </div>
 
       {/* Map or Additional Information Section */}
-      <div className="bg-gray-100 dark:bg-gray-800 py-20">
+      <div className="bg-gray-100 dark:bg-gray-800 py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8">Connect With Us</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-12">
-              Whether you&#39;re an investor looking for opportunities or a business seeking funding,
-              we&#39;re here to help you achieve your financial goals.
+            <h2 className="section-heading">Connect With Us</h2>
+            <p className="section-paragraph">
+              Whether you're an investor looking for opportunities or a business seeking funding,
+              we're here to help you achieve your financial goals.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* For Investors */}
               <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
-                <h3 className="text-xl font-semibold mb-4">For Investors</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="card-heading">For Investors</h3>
+                <p className="card-paragraph">
                   Discover curated investment opportunities and grow your portfolio
                 </p>
               </div>
               {/* For Businesses */}
               <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
-                <h3 className="text-xl font-semibold mb-4">For Businesses</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="card-heading">For Businesses</h3>
+                <p className="card-paragraph">
                   Connect with verified investors and secure funding for growth
                 </p>
               </div>
               {/* Support */}
               <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
-                <h3 className="text-xl font-semibold mb-4">Support</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="card-heading">Support</h3>
+                <p className="card-subheading">
                   Get help with your account or technical assistance
                 </p>
               </div>
@@ -157,4 +157,4 @@ export default function ContactPage() {
       </div>
     </>
   );
-}
+} 

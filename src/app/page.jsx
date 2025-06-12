@@ -14,7 +14,7 @@ export default function Home() {
     <div className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-black">
       {/* Hero Section */}
       <section className="md:min-h-screen flex flex-col items-center justify-center text-center px-4 py-20">
-        <h1 className="text-2xl md:text-6xl font-bold mb-4">
+        <h1 className="banner-heading mb-4">
           Discover Curated Private<br />
           <RotatingText />
         </h1>
@@ -31,10 +31,10 @@ export default function Home() {
     </div>
 
     {/* What is EquiGini Section */}
-    <div className="bg-white dark:from-gray-900 dark:to-black py-20">
+    <div className="bg-white dark:from-gray-900 dark:to-black py-8 md:py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-4xl font-bold text-center mb-8">What is EquiGini?</h2>
-        <p className="text-sm md:text-lg text-gray-600 dark:text-gray-300 text-center max-w-4xl mx-auto mb-16">
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-8">What is EquiGini?</h2>
+        <p className="text-sm md:text-lg text-gray-600 dark:text-gray-300 text-center max-w-4xl mx-auto mb-8 md:mb-16">
           An exclusive, invite-only platform that connects verified investors with premium private investment opportunities. 
           Our compliance-first approach ensures all deals are thoroughly vetted and NDA-protected.
         </p>
@@ -65,8 +65,8 @@ export default function Home() {
           {/* Discover */}
           <div className="flex flex-col items-center text-center group">
             <div className="relative mb-6">
-              <div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <div className="w-16 md:w-24 h-16 md:h-24 bg-purple-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
@@ -79,13 +79,13 @@ export default function Home() {
           {/* Sign NDA */}
           <div className="flex flex-col items-center text-center group">
             <div className="relative mb-6">
-              <div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <div className="w-16 md:w-24 h-16 md:h-24 bg-purple-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-3">Sign NDA</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mb-3">Sign NDA</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-2">Access detailed information</p>
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Sign confidentiality agreements to unlock comprehensive deal information and due diligence materials.</p>
           </div>
@@ -93,8 +93,8 @@ export default function Home() {
           {/* Invest */}
           <div className="flex flex-col items-center text-center group">
             <div className="relative mb-6">
-              <div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <div className="w-16 md:w-24 h-16 md:h-24 bg-purple-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -109,7 +109,7 @@ export default function Home() {
 
     <div className="bg-gray-100">
       {/* Featured Opportunities */}
-      <section className="container mx-auto py-16 px-4">
+      <section className="container mx-auto py-10 md:py-20  px-4">
         <div className="flex flex-row items-center justify-between mb-8 gap-4">
           <h2 className="text-2xl md:text-4xl font-bold">Featured Deals</h2>
           <Link href="/deals" className="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-semibold group">
@@ -129,7 +129,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-0">{deal.name}</h3>
+                  <h3 className="card-heading deal-heading-lg-override">{deal.name}</h3>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                     deal.status === 'Open' 
                       ? 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
@@ -140,7 +140,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="space-y-3 mb-6 flex-grow">
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="card-paragraph">
                   <span className="text-sm">Sector: {deal.sector}</span>
                 </div>
                 <div className="flex items-center text-gray-600 dark:text-gray-300">
@@ -155,7 +155,7 @@ export default function Home() {
                 className="w-full"
                 disabled={deal.status === 'Closed'}
               >
-                Login to View More
+                Know More
               </Button>
             </div>
           ))}
@@ -163,48 +163,48 @@ export default function Home() {
       </section>
     </div>
     {/* How It Works Section */}
-    <div className="bg-white dark:bg-gray-900 py-20">
+    <div className="bg-white dark:bg-gray-900 py-10 md:py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-4xl font-bold text-center mb-16">How It Works</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-16">How It Works</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 relative">
           {/* Register & Verify */}
           <div className="flex flex-col items-center text-center">
             <div className="mb-6">
-              <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center">
-                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <div className="w-16 md:w-24 h-16 md:h-24 bg-purple-600 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-3">Register & Verify</h3>
-            <p className="text-gray-600 dark:text-gray-300">Complete our verification process to access exclusive opportunities</p>
+            <h3 className="text-xl md:text-2xl font-semibold mb-3">Register & Verify</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Complete our verification process to access exclusive opportunities</p>
           </div>
 
           {/* Sign NDA */}
           <div className="flex flex-col items-center text-center">
             <div className="mb-6">
-              <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center">
-                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <div className="w-16 md:w-24 h-16 md:h-24 bg-purple-600 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-3">Sign NDA</h3>
-            <p className="text-gray-600 dark:text-gray-300">Secure confidential access to detailed deal information</p>
+            <h3 className="text-xl md:text-2xl font-semibold mb-3">Sign NDA</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Secure confidential access to detailed deal information</p>
           </div>
 
           {/* Discover & Invest */}
           <div className="flex flex-col items-center text-center">
             <div className="mb-6">
-              <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center">
-                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <div className="w-16 md:w-24 h-16 md:h-24 bg-purple-600 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-3">Discover & Invest</h3>
-            <p className="text-gray-600 dark:text-gray-300">Explore opportunities and express your investment interest</p>
+            <h3 className="text-xl md:text-2xl font-semibold mb-3">Discover & Invest</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Explore opportunities and express your investment interest</p>
           </div>
         </div>
 
@@ -240,9 +240,9 @@ export default function Home() {
     </div>
 
     {/* What Our Investors Say Section */}
-    <div className="bg-white py-20">
+    <div className="bg-white py-10 md:py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-4xl font-bold text-center mb-8">What Our Investors Say</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-16">What Our Investors Say</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto">
           {investors.map((investor) => (
