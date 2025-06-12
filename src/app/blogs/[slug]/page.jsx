@@ -94,7 +94,7 @@ export default function BlogDetailPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 mb-20">
+      <div className="container mx-auto px-4 mb-10 md:mb-20">
         <div className="mx-auto">
           {/* Tags */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
@@ -109,15 +109,15 @@ export default function BlogDetailPage() {
           </div>
 
           {/* Main Content */}
-          <div className="rounded-2xl md:shadow-lg md:p-8 space-y-8">
+          <div className="rounded-2xl md:shadow-lg md:p-8 space-y-4">
             {content.map((block, idx) => {
             switch (block.type) {
               case "h2":
-                return <h2 key={idx} className="section-heading text-start-override">{block.text}</h2>;
+                return <h2 key={idx} className="blog-heading text-start-override">{block.text}</h2>;
               case "h3":
-                return <h3 key={idx} className="text-xl font-semibold mt-8 mb-4 text-gray-900">{block.text}</h3>;
+                return <h3 key={idx} className="text-xl font-semibold mt-6 mb-4 text-gray-900">{block.text}</h3>;
               case "p":
-                return <p key={idx} className="section-paragraph text-start-override">{block.text}</p>;
+                return <p key={idx} className="blog-paragraph text-start-override">{block.text}</p>;
               case "blockquote":
                 return (
                   <blockquote key={idx} className="border-l-4 border-purple-600 pl-4 my-6 italic text-gray-700">
@@ -153,8 +153,8 @@ export default function BlogDetailPage() {
               case "conclusion":
                 return (
                   <div key={idx} className="mt-12 p-6 bg-purple-50 rounded-xl">
-                    <h2 className="section-heading text-start-override">Conclusion</h2>
-                    <p className="section-paragraph text-start-override">{block.text}</p>
+                    <h2 className="blog-heading text-start-override">Conclusion</h2>
+                    <p className="blog-paragraph text-start-override mb-0-override">{block.text}</p>
                   </div>
                 );
               default:

@@ -35,10 +35,16 @@ body {
 .section-heading {
   @apply text-2xl md:text-3xl font-semibold text-center mb-4 md:mb-8;
 }
+.blog-heading {
+  @apply text-2xl  font-semibold text-center mb-3 ;
+}
 
 
 .section-paragraph {
   @apply text-sm md:text-lg text-gray-600 text-center max-w-4xl mx-auto mb-8 md:mb-16;
+}
+.blog-paragraph {
+  @apply text-sm md:text-lg text-gray-600 text-center mx-auto mb-8 md:mb-16;
 }
 
 .section-container-heading {
@@ -77,4 +83,7 @@ body {
 .deal-heading-lg-override {
   @apply text-xl  font-semibold ;
   
+}
+.mb-0-override {
+  @apply mb-0;
 }

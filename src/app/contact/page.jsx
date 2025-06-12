@@ -11,8 +11,8 @@ export default function ContactPage() {
     <>
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-purple-50 to-purple-100">
-        <div className="container mx-auto px-4 py-10 md:py-20">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="container mx-auto px-4 py-20">
+          <div className=" mx-auto text-center">
             <h1 className="banner-heading">
               Get in Touch with <span className="text-purple-600">EquiGini</span>
             </h1>
@@ -26,13 +26,13 @@ export default function ContactPage() {
       {/* Contact Form Section */}
       <div className="bg-white   py-10 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12  mx-auto">
             {/* Contact Information */}
             <div>
               <h2 className="section-heading text-start-override">Contact Information</h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="card-heading mb-2">Office Address</h3>
+                  <h3 className="card-heading deal-heading-lg-override mb-2">Office Address</h3>
                   <p className="card-paragraph">
                     123 Investment Avenue<br />
                     Financial District<br />
@@ -40,17 +40,17 @@ export default function ContactPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="card-heading mb-2">Email Us</h3>
+                  <h3 className="card-heading deal-heading-lg-override mb-2">Email Us</h3>
                   <a href="mailto:info@equigini.com" className="text-purple-600 hover:text-purple-700 text-sm">
                     info@equigini.com
                   </a>
                 </div>
                 <div>
-                  <h3 className="card-heading mb-2">Call Us</h3>
+                  <h3 className="card-heading deal-heading-lg-override mb-2">Call Us</h3>
                   <p className="card-paragraph">+91 (123) 456-7890</p>
                 </div>
                 <div>
-                  <h3 className="card-heading mb-2">Business Hours</h3>
+                  <h3 className="card-heading deal-heading-lg-override mb-2">Business Hours</h3>
                   <p className="card-paragraph">
                     Monday - Friday: 9:00 AM - 6:00 PM IST<br />
                     Saturday - Sunday: Closed
@@ -123,7 +123,7 @@ export default function ContactPage() {
       {/* Map or Additional Information Section */}
       <div className="bg-gray-100 py-10 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className=" mx-auto text-center">
             <h2 className="section-heading">Connect With Us</h2>
             <p className="section-paragraph">
               Whether you&#39;re an investor looking for opportunities or a business seeking funding,
