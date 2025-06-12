@@ -36,7 +36,6 @@ module.exports = {
         secondary3: "#6a7282",
         // bg colors
         bodybg: "#ffffff",
-        darkbg: "#38083c",
         bodybg2: "#2a0632",
         bodybg3: "#5c0c6d",
         bodybg4: "#f8f4f9",

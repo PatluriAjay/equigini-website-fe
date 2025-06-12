@@ -10,7 +10,7 @@ export default function Card({
   className = "",
 }) {
   return (
-    <div className={`bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform hover:-translate-y-1 hover:shadow-2xl ${className}`}>
+    <div className={`bg-white   rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform hover:-translate-y-1 hover:shadow-2xl ${className}`}>
       {icon && (
         <div className={`w-10 h-10 flex items-center justify-center rounded-full ${color} mt-5 ml-5 mb-2`}>
           {icon}

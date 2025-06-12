@@ -45,7 +45,7 @@ export default function BlogsPage() {
   const blogsToShow = blogs.slice(startIdx, endIdx);
 
   return (
-    <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-black">
+    <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
         <div className="container mx-auto px-4 text-center">

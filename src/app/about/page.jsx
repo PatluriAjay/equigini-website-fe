@@ -20,7 +20,7 @@ const team = [
 
 export default function AboutPage() {
   return (<>
-    <div className="bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-black">
+    <div className="bg-gradient-to-b from-purple-50 to-white">
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
         <div className="container mx-auto px-4 text-center">
@@ -32,7 +32,7 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
-    <div className="bg-white /py-10 md:py-20">
+    <div className="bg-white py-10 md:py-20">
       <div className="container mx-auto px-4">
           {/* Our Values */}
           <section>
@@ -58,7 +58,7 @@ export default function AboutPage() {
                   description={member.bio}
                   imageUrl={member.imageUrl}
                 >
-                  <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">{member.role}</div>
+                  <div className="mt-2 text-sm text-gray-500">{member.role}</div>
                 </TeamCard>
               ))}
             </div>

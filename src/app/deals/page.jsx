@@ -71,7 +71,7 @@ export default function DealsPage() {
   const dealsToShow = filteredDeals.slice(startIdx, endIdx);
 
   return (
-    <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-black">
+    <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
         <div className="container mx-auto px-4 text-center">
@@ -88,7 +88,7 @@ export default function DealsPage() {
             <select
               value={selectedFilters.sector}
               onChange={(e) => setSelectedFilters(prev => ({ ...prev, sector: e.target.value }))}
-              className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-purple-600 text-gray-900 dark:text-white ${styles.customSelect}`}
+              className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Sectors</option>
               {filters.sectors.map(sector => (
@@ -100,7 +100,7 @@ export default function DealsPage() {
             <select
               value={selectedFilters.stage}
               onChange={(e) => setSelectedFilters(prev => ({ ...prev, stage: e.target.value }))}
-              className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-purple-600 text-gray-900 dark:text-white ${styles.customSelect}`}
+              className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Stages</option>
               {filters.stages.map(stage => (
@@ -112,7 +112,7 @@ export default function DealsPage() {
             <select
               value={selectedFilters.geography}
               onChange={(e) => setSelectedFilters(prev => ({ ...prev, geography: e.target.value }))}
-              className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-purple-600 text-gray-900 dark:text-white ${styles.customSelect}`}
+              className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Geographies</option>
               {filters.geographies.map(geography => (
@@ -124,7 +124,7 @@ export default function DealsPage() {
             <select
               value={selectedFilters.status}
               onChange={(e) => setSelectedFilters(prev => ({ ...prev, status: e.target.value }))}
-              className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-purple-600 text-gray-900 dark:text-white ${styles.customSelect}`}
+              className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Statuses</option>
               {filters.statuses.map(status => (
@@ -136,7 +136,7 @@ export default function DealsPage() {
             <select
               value={selectedFilters.ticketSize}
               onChange={(e) => setSelectedFilters(prev => ({ ...prev, ticketSize: e.target.value }))}
-              className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-purple-600 text-gray-900 dark:text-white ${styles.customSelect}`}
+              className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Ticket Sizes</option>
               {filters.ticketSizes.map(size => (
@@ -148,7 +148,7 @@ export default function DealsPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {dealsToShow.map((deal) => (
-            <div key={deal.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 dark:border-gray-700 p-6 flex flex-col">
+            <div key={deal.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 p-6 flex flex-col">
                           <div className="flex items-start mb-6 gap-3">
                             <div className="card-icon-div">
                               <svg className="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"> 
@@ -159,8 +159,8 @@ export default function DealsPage() {
                               <h3 className=" card-heading text-lg-override ">{deal.name}</h3>
                               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                                 deal.status === 'Open' 
-                                  ? 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
-                                  : 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                                  ? 'bg-green-50 text-green-700' 
+                                  : 'bg-red-50 text-red-700'
                               }`}>
                                 {deal.status || 'Open'}
                               </span>

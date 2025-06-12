@@ -18,7 +18,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-white dark:bg-gray-900 shadow-sm fixed top-0 left-0 z-50">
+    <nav className="w-full bg-white   shadow-sm fixed top-0 left-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center py-4 px-4 relative">
         {/* Left section - Logo */}
         <div className="flex items-center justify-between lg:justify-start w-full lg:w-[180px]">
@@ -27,7 +27,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
         >
           <svg 
             className="w-6 h-6" 
@@ -69,7 +69,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 font-semibold transition-colors 
+                  className={`text-gray-700  hover:text-purple-600 font-semibold transition-colors 
                     hover:underline hover:decoration-purple-600 hover:underline-offset-8
                     ${isActive ? "underline decoration-purple-600 underline-offset-8" : ""}`}
                   onClick={handleLinkClick}

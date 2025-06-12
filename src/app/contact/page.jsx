@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-black">
+      <div className="bg-gradient-to-b from-purple-50 to-purple-100">
         <div className="container mx-auto px-4 py-10 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="banner-heading">
@@ -24,7 +24,7 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="bg-white dark:bg-gray-900 py-10 md:py-20">
+      <div className="bg-white   py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
@@ -60,7 +60,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl">
+            <div className="bg-gray-50 p-8 rounded-2xl">
               <h2 className="section-heading text-start-override">Send Us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     required
                   />
                 </div>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     required
                   />
                 </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     required
                   />
                 </div>
@@ -103,7 +103,7 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     required
                   ></textarea>
                 </div>
@@ -121,7 +121,7 @@ export default function ContactPage() {
       </div>
 
       {/* Map or Additional Information Section */}
-      <div className="bg-gray-100 dark:bg-gray-800 py-10 md:py-20">
+      <div className="bg-gray-100 py-10 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="section-heading">Connect With Us</h2>
@@ -131,21 +131,21 @@ export default function ContactPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* For Investors */}
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
+              <div className="bg-white p-6 rounded-xl">
                 <h3 className="card-heading">For Investors</h3>
                 <p className="card-paragraph">
                   Discover curated investment opportunities and grow your portfolio
                 </p>
               </div>
               {/* For Businesses */}
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
+              <div className="bg-white p-6 rounded-xl">
                 <h3 className="card-heading">For Businesses</h3>
                 <p className="card-paragraph">
                   Connect with verified investors and secure funding for growth
                 </p>
               </div>
               {/* Support */}
-              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
+              <div className="bg-white p-6 rounded-xl">
                 <h3 className="card-heading">Support</h3>
                 <p className="card-subheading">
                   Get help with your account or technical assistance

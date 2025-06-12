@@ -11,14 +11,14 @@ import Image from "next/image";
 
 export default function Home() {
   return (<>
-    <div className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-black">
+    <div className="bg-gradient-to-b from-purple-50 to-purple-100">
       {/* Hero Section */}
       <section className="md:min-h-screen flex flex-col items-center justify-center text-center px-4 py-20">
         <h1 className="banner-heading mb-4">
           Discover Curated Private<br />
           <RotatingText />
         </h1>
-        <p className="text-sm md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+        <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto mb-8">
           A secure, invite-only platform for discerning investors
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -31,10 +31,10 @@ export default function Home() {
     </div>
 
     {/* What is EquiGini Section */}
-    <div className="bg-white dark:from-gray-900 dark:to-black py-8 md:py-20">
+    <div className="bg-white py-8 md:py-20">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-8">What is EquiGini?</h2>
-        <p className="text-sm md:text-lg text-gray-600 dark:text-gray-300 text-center max-w-4xl mx-auto mb-8 md:mb-16">
+        <p className="text-sm md:text-lg text-gray-600 text-center max-w-4xl mx-auto mb-8 md:mb-16">
           An exclusive, invite-only platform that connects verified investors with premium private investment opportunities. 
           Our compliance-first approach ensures all deals are thoroughly vetted and NDA-protected.
         </p>
@@ -72,8 +72,8 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Discover</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-2">Browse curated opportunities</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Explore vetted, high-quality investment opportunities across various sectors and stages.</p>
+            <p className="text-gray-600 mb-2">Browse curated opportunities</p>
+            <p className="text-sm text-gray-500 max-w-xs">Explore vetted, high-quality investment opportunities across various sectors and stages.</p>
           </div>
 
           {/* Sign NDA */}
@@ -86,8 +86,8 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Sign NDA</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-2">Access detailed information</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Sign confidentiality agreements to unlock comprehensive deal information and due diligence materials.</p>
+            <p className="text-gray-600 mb-2">Access detailed information</p>
+            <p className="text-sm text-gray-500 max-w-xs">Sign confidentiality agreements to unlock comprehensive deal information and due diligence materials.</p>
           </div>
 
           {/* Invest */}
@@ -100,8 +100,8 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Invest</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-2">Express interest & invest</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Connect with deal sponsors and complete your investment through our secure platform.</p>
+            <p className="text-gray-600 mb-2">Express interest & invest</p>
+            <p className="text-sm text-gray-500 max-w-xs">Connect with deal sponsors and complete your investment through our secure platform.</p>
           </div>
         </div>
       </div>
@@ -121,10 +121,10 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {deals.slice(0, 3).map((deal) => (
-            <div key={deal.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 dark:border-gray-700 p-6 flex flex-col">
+            <div key={deal.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 p-6 flex flex-col">
               <div className="flex items-start mb-6 gap-3">
-                <div className="w-14 h-14 bg-purple-100 dark:bg-purple-900/50 rounded-2xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-purple-600 dark:text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
+                  <svg className="w-7 h-7 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     {DealIconMap[deal.sector]}
                   </svg>
                 </div>
@@ -132,8 +132,8 @@ export default function Home() {
                   <h3 className="card-heading deal-heading-lg-override">{deal.name}</h3>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                     deal.status === 'Open' 
-                      ? 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
-                      : 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                      ? 'bg-green-50 text-green-700' 
+                      : 'bg-red-50 text-red-700'
                   }`}>
                     {deal.status || 'Open'}
                   </span>
@@ -143,10 +143,10 @@ export default function Home() {
                 <div className="card-paragraph">
                   <span className="text-sm">Sector: {deal.sector}</span>
                 </div>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="flex items-center text-gray-600">
                   <span className="text-sm">Stage: {deal.stage}</span>
                 </div>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="flex items-center text-gray-600">
                   <span className="text-sm">Ticket Size: {deal.range}</span>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function Home() {
       </section>
     </div>
     {/* How It Works Section */}
-    <div className="bg-white dark:bg-gray-900 py-10 md:py-20">
+    <div className="bg-white   py-10 md:py-20">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-16">How It Works</h2>
         
@@ -178,7 +178,7 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Register & Verify</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Complete our verification process to access exclusive opportunities</p>
+            <p className="text-sm text-gray-500 max-w-xs">Complete our verification process to access exclusive opportunities</p>
           </div>
 
           {/* Sign NDA */}
@@ -191,7 +191,7 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Sign NDA</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Secure confidential access to detailed deal information</p>
+            <p className="text-sm text-gray-500 max-w-xs">Secure confidential access to detailed deal information</p>
           </div>
 
           {/* Discover & Invest */}
@@ -204,7 +204,7 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Discover & Invest</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">Explore opportunities and express your investment interest</p>
+            <p className="text-sm text-gray-500 max-w-xs">Explore opportunities and express your investment interest</p>
           </div>
         </div>
 

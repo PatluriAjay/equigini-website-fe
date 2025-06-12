@@ -62,9 +62,9 @@ export default function BlogDetailPage() {
   });
 
   return (
-    <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-black">
+    <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* Banner */}
-      <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-800 dark:to-gray-900 py-16 mb-10">
+      <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-16 mb-10">
         <div className="container mx-auto px-4">
           <h1 className="banner-heading text-center">{blog.title}</h1>
             
@@ -80,15 +80,15 @@ export default function BlogDetailPage() {
               </div>}
               <div>
                 <h3 className="banner-subheading font-semibold">{author.name}</h3>
-                {/* <p className="text-sm text-gray-600 dark:text-gray-400">{author.role}</p> */}
+                {/* <p className="text-sm text-gray-600">{author.role}</p> */}
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-600">
               <span className="card-paragraph">{formattedDate}</span>
               <span className="card-paragraph">•</span>
               <span className="card-paragraph">{readTime}</span>
               <span className="card-paragraph">•</span>
-              <span className="text-sm flex items-center text-purple-600 dark:text-purple-400">{category}</span>
+              <span className="text-sm flex items-center text-purple-600">{category}</span>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function BlogDetailPage() {
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 rounded-full text-sm"
+                className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
               >
                 {tag}
               </span>
@@ -115,12 +115,12 @@ export default function BlogDetailPage() {
               case "h2":
                 return <h2 key={idx} className="section-heading text-start-override">{block.text}</h2>;
               case "h3":
-                return <h3 key={idx} className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">{block.text}</h3>;
+                return <h3 key={idx} className="text-xl font-semibold mt-8 mb-4 text-gray-900">{block.text}</h3>;
               case "p":
                 return <p key={idx} className="section-paragraph text-start-override">{block.text}</p>;
               case "blockquote":
                 return (
-                  <blockquote key={idx} className="border-l-4 border-purple-600 pl-4 my-6 italic text-gray-700 dark:text-gray-300">
+                  <blockquote key={idx} className="border-l-4 border-purple-600 pl-4 my-6 italic text-gray-700">
                     {block.text}
                   </blockquote>
                 );
@@ -144,7 +144,7 @@ export default function BlogDetailPage() {
                       />
                     </div>
                     {block.caption && (
-                      <figcaption className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+                      <figcaption className="mt-2 text-center text-sm text-gray-600">
                         {block.caption}
                       </figcaption>
                     )}
@@ -152,7 +152,7 @@ export default function BlogDetailPage() {
                 );
               case "conclusion":
                 return (
-                  <div key={idx} className="mt-12 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
+                  <div key={idx} className="mt-12 p-6 bg-purple-50 rounded-xl">
                     <h2 className="section-heading text-start-override">Conclusion</h2>
                     <p className="section-paragraph text-start-override">{block.text}</p>
                   </div>

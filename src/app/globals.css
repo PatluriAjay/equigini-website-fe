@@ -14,13 +14,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
 body {
   background: var(--background);
@@ -36,7 +29,7 @@ body {
   @apply text-2xl md:text-5xl font-semibold mb-4;
 }
 .banner-subheading {
-  @apply text-sm md:text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto;
+  @apply text-sm md:text-base text-gray-600 max-w-2xl mx-auto;
 }
 
 .section-heading {
@@ -45,32 +38,32 @@ body {
 
 
 .section-paragraph {
-  @apply text-sm md:text-lg text-gray-600 dark:text-gray-300 text-center max-w-4xl mx-auto mb-8 md:mb-16;
+  @apply text-sm md:text-lg text-gray-600 text-center max-w-4xl mx-auto mb-8 md:mb-16;
 }
 
 .section-container-heading {
   @apply text-lg md:text-xl font-semibold mb-3;
 }
 .section-container-paragraph {
-  @apply text-sm text-gray-500 dark:text-gray-400 max-w-xs;
+  @apply text-sm text-gray-500;
 }
 
 .card-heading{
   @apply text-sm font-semibold mb-1;
 }
 .card-subheading {
-  @apply text-gray-600 dark:text-gray-300 mb-2 text-sm;
+  @apply text-gray-600 mb-2 text-sm;
 }
 .card-paragraph {
-  @apply text-sm flex items-center text-gray-600 dark:text-gray-300;
+  @apply text-sm flex items-center text-gray-600;
 }
 
 .card-icon-div{
-  @apply w-14 h-14 bg-purple-100 dark:bg-purple-900/50 rounded-2xl flex items-center justify-center
+  @apply w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center
 }
 
 .card-icon-svg{
-  @apply w-7 h-7 text-purple-600 dark:text-purple-400;
+  @apply w-7 h-7 text-purple-600;
 }
 
 .text-start-override {
