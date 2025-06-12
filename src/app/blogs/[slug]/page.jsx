@@ -66,47 +66,12 @@ export default function BlogDetailPage() {
       {/* Banner */}
       <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-16 mb-10">
         <div className="container mx-auto px-4">
-          <h1 className="banner-heading text-center">{blog.title}</h1>
-            
-          <div className="mx-auto">
-            <div className="flex items-center justify-center text-center gap-4 mb-6">
-              {content.author && <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                <Image
-                  src={author.avatar}
-                  alt={author.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>}
-              <div>
-                <h3 className="banner-subheading font-semibold">{author.name}</h3>
-                {/* <p className="text-sm text-gray-600">{author.role}</p> */}
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-600">
-              <span className="card-paragraph">{formattedDate}</span>
-              <span className="card-paragraph">•</span>
-              <span className="card-paragraph">{readTime}</span>
-              <span className="card-paragraph">•</span>
-              <span className="text-sm flex items-center text-purple-600">{category}</span>
-            </div>
-          </div>
+          <h1 className="banner-heading text-center mb-0-override">{blog.title}</h1>
         </div>
       </div>
 
       <div className="container mx-auto px-4 mb-10 md:mb-20">
         <div className="mx-auto">
-          {/* Tags */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
 
           {/* Main Content */}
           <div className="rounded-2xl md:shadow-lg md:p-8 space-y-4">
@@ -152,7 +117,7 @@ export default function BlogDetailPage() {
                 );
               case "conclusion":
                 return (
-                  <div key={idx} className="mt-12 p-6 bg-purple-50 rounded-xl">
+                  <div key={idx} className="mt-12 p-3 md:p-6 bg-purple-50 rounded-xl">
                     <h2 className="blog-heading text-start-override">Conclusion</h2>
                     <p className="blog-paragraph text-start-override mb-0-override">{block.text}</p>
                   </div>
@@ -163,6 +128,23 @@ export default function BlogDetailPage() {
             })}
           </div>
         </div>
+        <div className="mt-8 md:mt-10">
+            <div className="flex items-center gap-4 mb-2">
+                <h3 className="banner-subheading font-semibold" style={{margin: 0}}>{author.name}</h3>
+                <span className="card-paragraph">{formattedDate}</span>
+            </div>
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
       </div>
     </div>
   );

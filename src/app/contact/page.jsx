@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Button from "../../components/Button";
 
 export default function ContactPage() {
@@ -34,20 +35,22 @@ export default function ContactPage() {
                 <div>
                   <h3 className="card-heading deal-heading-lg-override mb-2">Office Address</h3>
                   <p className="card-paragraph">
-                    123 Investment Avenue<br />
-                    Financial District<br />
-                    Mumbai, 400001
+                    Pantomath Nucleus House<br />
+                    Saki Vihar Road, Andheri (East)<br />
+                    Mumbai 400072
                   </p>
                 </div>
                 <div>
                   <h3 className="card-heading deal-heading-lg-override mb-2">Email Us</h3>
-                  <a href="mailto:info@equigini.com" className="text-purple-600 hover:text-purple-700 text-sm">
+                  <Link target="_blank" href="mailto:info@equigini.com" className="text-purple-600 hover:text-purple-700 text-sm">
                     info@equigini.com
-                  </a>
+                  </Link>
                 </div>
                 <div>
                   <h3 className="card-heading deal-heading-lg-override mb-2">Call Us</h3>
-                  <p className="card-paragraph">+91 (123) 456-7890</p>
+                   <Link target="_blank" href="tel:(022) 61946700" className="text-purple-600 hover:text-purple-700 text-sm">
+                    (022) 61946700
+                  </Link>
                 </div>
                 <div>
                   <h3 className="card-heading deal-heading-lg-override mb-2">Business Hours</h3>

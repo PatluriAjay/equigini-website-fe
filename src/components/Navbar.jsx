@@ -7,7 +7,7 @@ import Button from "./Button";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "javacript:void()", label: "About" },
   { href: "/deals", label: "Deals" },
   { href: "/blogs", label: "Blogs" },
   { href: "/contact", label: "Contact" },

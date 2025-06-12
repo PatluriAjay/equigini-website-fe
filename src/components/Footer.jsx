@@ -9,8 +9,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-white py-10 md:py-20">
-      <div className="container mx-auto px-6 md:px-4">
+    <footer className="bg-black text-white py-5 md:py-20">
+      <div className="container mx-auto px-6 md:px-4 hidden md:block">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Description */}
           <div className="col-span-1">
@@ -25,7 +25,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-4">
               <li><Link href="/" className="text-gray-400 hover:text-purple-600">Home</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-purple-600">About</Link></li>
+              <li><Link href="javacript:void()" className="text-gray-400 hover:text-purple-600">About</Link></li>
               <li><Link href="/deals" className="text-gray-400 hover:text-purple-600">Deals</Link></li>
               <li><Link href="/blogs" className="text-gray-400 hover:text-purple-600">Blogs</Link></li>
             </ul>
@@ -67,6 +67,9 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-center items-center">
           <p className="text-gray-400 mb-4 md:mb-0">© 2025 EquiGini. All rights reserved.</p>
         </div>
+      </div>
+      <div className="container mx-auto px-6 md:px-4 block md:hidden text-center">
+        <p className="text-gray-400">© 2025 EquiGini. All rights reserved.</p>
       </div>
     </footer>
   );

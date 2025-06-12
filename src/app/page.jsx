@@ -1,3 +1,4 @@
+"use client";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
@@ -8,6 +9,8 @@ import RotatingText from "../components/RotatingText";
 import { DealIconMap } from "../data/dealIcons";
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
 
 export default function Home() {
   return (<>
@@ -154,6 +157,7 @@ export default function Home() {
                 variant={'primary'}
                 className="w-full"
                 disabled={deal.status === 'Closed'}
+                
               >
                 Know More
               </Button>
@@ -243,29 +247,122 @@ export default function Home() {
     <div className="bg-white py-10 md:py-20">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-16">What Our Investors Say</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto">
-          {investors.map((investor) => (
-            <div key={investor.id} className="bg-gray-100 rounded-2xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                  <Image 
-                    src={investor.image} 
-                    alt={investor.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">{investor.name}</h3>
-                  <p className="text-gray-500 font-semibold">{investor.position}</p>
-                </div>
-              </div>
-              <p className="text-black font-semibold italic">&ldquo;{investor.testimonial}&rdquo;</p>
-            </div>
-          ))}
-        </div>
+        {/* Carousel Implementation */}
+        <InvestorCarousel investors={investors} />
       </div>
     </div>
   </>);
+
+  // Carousel Component
+// Carousel Component - Replace the existing InvestorCarousel function with this
+function InvestorCarousel({ investors }) {
+  const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const total = investors.length;
+
+  // Check if screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Calculate how many items to show and navigation logic
+  const itemsToShow = isMobile ? 1 : 2;
+  const maxIndex = Math.max(0, total - itemsToShow);
+
+  const prev = () => setCurrent((prev) => Math.max(0, prev - 1));
+  const next = () => setCurrent((prev) => Math.min(maxIndex, prev + 1));
+
+  // Get visible investors based on current index and items to show
+  const getVisibleInvestors = () => {
+    return investors.slice(current, current + itemsToShow);
+  };
+
+  return (
+    <div className="relative mx-auto">
+      <div className="flex items-center justify-center gap-4">
+        {/* Left Arrow Button */}
+        <button 
+          onClick={prev} 
+          // disabled={current === 0}
+          aria-label="Previous" 
+          className={`hidden md:inline bg-white border border-gray-300 rounded-full p-2 shadow transition-colors ${
+            current === 0 
+              ? 'opacity-50' 
+              : 'hover:bg-purple-100'
+          }`}
+        >
+          <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Cards Container */}
+        <div className="flex-1 overflow-hidden">
+          <div className="transition-all duration-500">
+            <div className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-2'}`}>
+              {getVisibleInvestors().map((investor, idx) => (
+                <div key={current + idx} className="bg-gray-100 rounded-2xl p-6 md:p-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
+                      <Image 
+                        src={investor.image} 
+                        alt={investor.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-lg md:text-xl font-semibold truncate">{investor.name}</h3>
+                      <p className="text-gray-500 font-semibold text-sm md:text-base truncate">{investor.position}</p>
+                    </div>
+                  </div>
+                  <p className="text-black font-semibold italic text-sm md:text-base leading-relaxed">
+                    &ldquo;{investor.testimonial}&rdquo;
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Arrow Button */}
+        <button 
+          onClick={next} 
+          // disabled={current >= maxIndex}
+          aria-label="Next" 
+          className={`hidden md:inline bg-white border border-gray-300 rounded-full p-2 shadow transition-colors ${
+            current >= maxIndex 
+              ? 'opacity-50' 
+              : 'hover:bg-purple-100'
+          }`}
+        >
+          <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-6 gap-2">
+        {Array.from({ length: maxIndex + 1 }, (_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={`w-3 h-3 rounded-full transition-colors ${
+              idx === current ? 'bg-purple-600' : 'bg-gray-300 hover:bg-gray-400'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
+    </div>
+  );
+}
 }
