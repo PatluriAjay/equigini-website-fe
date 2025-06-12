@@ -17,7 +17,7 @@ export default function ContactPage() {
               Get in Touch with <span className="text-purple-600">EquiGini</span>
             </h1>
             <p className="banner-subheading">
-              Have questions about investment opportunities or need support? We're here to help you navigate private investments with confidence.
+              Have questions about investment opportunities or need support? We&#39;re here to help you navigate private investments with confidence.
             </p>
           </div>
         </div>
@@ -126,8 +126,8 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="section-heading">Connect With Us</h2>
             <p className="section-paragraph">
-              Whether you're an investor looking for opportunities or a business seeking funding,
-              we're here to help you achieve your financial goals.
+              Whether you&#39;re an investor looking for opportunities or a business seeking funding,
+              we&#39;re here to help you achieve your financial goals.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* For Investors */}
