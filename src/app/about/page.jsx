@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="banner-heading">About <span className="text-primary">EquiGini</span></h1>
           <p className="banner-subheading">
-            EquiGini is committed to connecting investors with premium opportunities across sectors. Our mission is to make investing accessible, transparent, and rewarding for everyone.
+            EquiGini is committed to connecting investors with premium opportunities across sectors. Our mission is to make investing accessible, transparent, and rewarding.
           </p>
           {/* <Button variant="primary" className="mt-6">Contact Us</Button> */}
         </div>
