@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 const phrases = [
-  "Investment Opportunities",
+  "Investment Deals",
   "Growth Potential",
   "Exclusive Deals",
   "Secure Investments"
