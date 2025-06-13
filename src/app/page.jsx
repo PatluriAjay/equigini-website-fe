@@ -260,27 +260,67 @@ function InvestorCarousel({ investors }) {
   const [isMobile, setIsMobile] = useState(false);
   const total = investors.length;
 
-  // Check if screen is mobile
+  // Touch state for swipe
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Calculate how many items to show and navigation logic
   const itemsToShow = isMobile ? 1 : 2;
   const maxIndex = Math.max(0, total - itemsToShow);
 
-  const prev = () => setCurrent((prev) => Math.max(0, prev - 1));
-  const next = () => setCurrent((prev) => Math.min(maxIndex, prev + 1));
+  // Infinite navigation
+  const prev = () => {
+    if (current === 0) {
+      setCurrent(maxIndex);
+    } else {
+      setCurrent((prev) => prev - 1);
+    }
+  };
+  const next = () => {
+    if (current >= maxIndex) {
+      setCurrent(0);
+    } else {
+      setCurrent((prev) => prev + 1);
+    }
+  };
 
-  // Get visible investors based on current index and items to show
+  // Touch handlers for swipe
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    if (touchStartX !== null && touchEndX !== null) {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          next(); // swipe left
+        } else {
+          prev(); // swipe right
+        }
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   const getVisibleInvestors = () => {
-    return investors.slice(current, current + itemsToShow);
+    // For infinite loop, wrap around
+    let result = [];
+    for (let i = 0; i < itemsToShow; i++) {
+      result.push(investors[(current + i) % total]);
+    }
+    return result;
   };
 
   return (
@@ -289,13 +329,8 @@ function InvestorCarousel({ investors }) {
         {/* Left Arrow Button */}
         <button 
           onClick={prev} 
-          // disabled={current === 0}
           aria-label="Previous" 
-          className={`hidden md:inline bg-white border border-gray-300 rounded-full p-2 shadow transition-colors ${
-            current === 0 
-              ? 'opacity-50' 
-              : 'hover:bg-purple-100'
-          }`}
+          className={`hidden md:inline bg-white border border-gray-300 rounded-full p-2 shadow transition-colors hover:bg-purple-100`}
         >
           <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -305,9 +340,14 @@ function InvestorCarousel({ investors }) {
         {/* Cards Container */}
         <div className="flex-1 overflow-hidden">
           <div className="transition-all duration-500">
-            <div className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-2'}`}>
+            <div
+              className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-2'}`}
+              onTouchStart={isMobile ? handleTouchStart : undefined}
+              onTouchMove={isMobile ? handleTouchMove : undefined}
+              onTouchEnd={isMobile ? handleTouchEnd : undefined}
+            >
               {getVisibleInvestors().map((investor, idx) => (
-                <div key={current + idx} className="bg-gray-100 rounded-2xl p-6 md:p-8">
+                <div key={current + '-' + idx} className="bg-gray-100 rounded-2xl p-6 md:p-8">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
                       <Image 
@@ -334,13 +374,8 @@ function InvestorCarousel({ investors }) {
         {/* Right Arrow Button */}
         <button 
           onClick={next} 
-          // disabled={current >= maxIndex}
           aria-label="Next" 
-          className={`hidden md:inline bg-white border border-gray-300 rounded-full p-2 shadow transition-colors ${
-            current >= maxIndex 
-              ? 'opacity-50' 
-              : 'hover:bg-purple-100'
-          }`}
+          className={`hidden md:inline bg-white border border-gray-300 rounded-full p-2 shadow transition-colors hover:bg-purple-100`}
         >
           <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -361,7 +396,6 @@ function InvestorCarousel({ investors }) {
           />
         ))}
       </div>
-
     </div>
   );
 }

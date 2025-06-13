@@ -59,11 +59,20 @@ export default function BlogsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {blogsToShow.map((blog, idx) => (
             <div key={blog.id}>
-              <Card title={blog.title} description={blog.description} imageUrl={blog.imageUrl} icon={null}>
-                {idx == 0 && <Link href="/blogs/ai-investments" className="w-full">
-                  <Button variant="primary" className="w-full mt-auto">Know More</Button>
-                </Link>}
-                {idx !== 0 && <Button variant="primary" className="mt-auto">Know More</Button>}
+              <Card 
+                title={blog.title} 
+                imageUrl={blog.imageUrl} 
+                icon={null}
+              >
+                <p className="text-gray-600 text-sm line-clamp-2 mb-4">{blog.description}</p>
+                {idx == 0 && (
+                  <Link href="/blogs/ai-investments" className="w-full">
+                    <Button variant="primary" className="w-full mt-auto">Know More</Button>
+                  </Link>
+                )}
+                {idx !== 0 && (
+                  <Button variant="primary" className="mt-auto">Know More</Button>
+                )}
               </Card>
             </div>
           ))}

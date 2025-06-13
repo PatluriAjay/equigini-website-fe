@@ -17,8 +17,8 @@ const blogContent = [
     tags: ["Artificial Intelligence", "Technology", "Investment Trends", "Machine Learning"],
     readTime: "8 min read",
     content: [
-      { type: "p", text: "As we navigate through 2025, artificial intelligence continues to reshape the investment landscape, presenting unprecedented opportunities for investors across the globe." },
       { type: "img", src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80", alt: "AI Technology Visualization", caption: "AI is transforming the way we approach investments and business decisions" },
+      { type: "p", text: "As we navigate through 2025, artificial intelligence continues to reshape the investment landscape, presenting unprecedented opportunities for investors across the globe." },
       { type: "h2", text: "The Evolution of AI Investments" },
       { type: "p", text: "The AI industry has witnessed exponential growth over the past decade, with global investments reaching $500 billion in 2025. This surge is driven by breakthrough advancements in machine learning, natural language processing, and autonomous systems." },
       { type: "blockquote", text: "AI is not just changing how we invest; it's transforming what we invest in. The opportunities are boundless for those who understand the technology's potential." },
@@ -30,7 +30,7 @@ const blogContent = [
         "Manufacturing: Smart factories and predictive maintenance",
         "Transportation: Autonomous vehicles and logistics optimization"
       ]},
-      { type: "img", src: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80", alt: "AI in Healthcare", caption: "AI is revolutionizing healthcare diagnostics and treatment planning" },
+      // { type: "img", src: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80", alt: "AI in Healthcare", caption: "AI is revolutionizing healthcare diagnostics and treatment planning" },
       { type: "h2", text: "Investment Strategies" },
       { type: "p", text: "When considering AI investments, it's crucial to evaluate both direct and indirect exposure opportunities:" },
       { type: "list", items: [
