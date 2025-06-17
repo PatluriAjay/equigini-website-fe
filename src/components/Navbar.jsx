@@ -98,7 +98,7 @@ export default function Navbar() {
           {/* <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors w-full lg:w-auto whitespace-nowrap">
             Login / Register
           </button> */}
-          <Link href="https://equigini-draft-v3.vercel.app">
+          <Link href="https://equigini-draft-v3.vercel.app" target="_blank">
             <Button className="w-full lg:w-auto" variant="primaryoutline">
               Login / Register
             </Button>
