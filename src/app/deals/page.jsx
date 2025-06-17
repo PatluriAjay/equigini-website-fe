@@ -191,7 +191,7 @@ export default function DealsPage() {
                 <Button
                   variant={"rounded"}
                   className="w-full"
-                  disabled={deal.status === "Closed"}
+                  // disabled={deal.status === "Closed"}
                 >
                   Read More
                 </Button>
