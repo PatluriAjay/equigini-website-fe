@@ -187,11 +187,11 @@ export default function DealsPage() {
               <div className="card-paragraph mb-6 px-4 gap-2">
                 <p className="text-sm font-medium text-gray-700">Ticket Size:</p> <p className="text-sm">{deal.range}</p>
               </div>
-              <Link href={`/deals/${deal.slug}`} className="w-full px-4 pb-4">
-                <Button 
-                  variant={'rounded'}
+              <Link href={`https://equigini-draft-v3.vercel.app/login`} className="w-full px-4 pb-4">
+                <Button
+                  variant={"rounded"}
                   className="w-full"
-                  disabled={deal.status === 'Closed'}
+                  disabled={deal.status === "Closed"}
                 >
                   Read More
                 </Button>
