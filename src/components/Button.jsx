@@ -15,6 +15,8 @@ export default function Button({
       "rounded-md bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white focus:ring-transparent",
     outline:
       "rounded-md bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white focus:ring-transparent",
+    rounded:
+      " rounded-full bg-purple-600 font-light text-white border border-purple-600 hover:bg-white hover:text-purple-600 focus:ring-transparent font-extralight",
   };
   return (
     <button className={`${base} ${variants[variant]} ${className}`} {...props}>

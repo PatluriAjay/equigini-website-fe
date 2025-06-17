@@ -55,13 +55,16 @@ body {
 }
 
 .card-heading{
-  @apply text-sm font-semibold mb-1;
+  @apply text-sm font-semibold mb-1 ;
 }
 .card-subheading {
   @apply text-gray-600 mb-2 text-sm;
 }
 .card-paragraph {
   @apply text-sm flex items-center text-gray-600;
+}
+.card-paragraph2 {
+  @apply text-sm flex items-start text-gray-600;
 }
 
 .card-icon-div{

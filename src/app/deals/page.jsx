@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import { deals } from "@/data/deals";
 import { DealIconMap } from "@/data/dealIcons";
 import styles from "@/styles/Select.module.css";
+import Link from "next/link";
 
 const filters = {
   sectors: ["Technology", "Healthcare", "Finance", "Real Estate", "Energy", "Manufacturing"],
@@ -148,43 +149,54 @@ export default function DealsPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {dealsToShow.map((deal) => (
-            <div key={deal.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 p-6 flex flex-col">
-                          <div className="flex items-start mb-6 gap-3">
-                            <div className="card-icon-div">
-                              <svg className="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"> 
-                                {DealIconMap[deal.sector]}
-                              </svg>
-                            </div>
-                            <div>
-                              <h3 className=" card-heading text-lg-override ">{deal.name}</h3>
-                              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                                deal.status === 'Open' 
-                                  ? 'bg-green-50 text-green-700' 
-                                  : 'bg-red-50 text-red-700'
-                              }`}>
-                                {deal.status || 'Open'}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="space-y-3 mb-6 flex-grow">
-                            <div className="card-paragraph">
-                              <span className="text-sm">Sector: {deal.sector}</span>
-                            </div>
-                            <div className="card-paragraph">
-                              <span className="text-sm">Stage: {deal.stage}</span>
-                            </div>
-                            <div className="card-paragraph">
-                              <span className="text-sm">Ticket Size: {deal.range}</span>
-                            </div>
-                          </div>
-                          <Button 
-                            variant={'primary'}
-                            className="w-full"
-                            disabled={deal.status === 'Closed'}
-                          >
-                            Know More
-                          </Button>
-                        </div>
+            <div key={deal.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100  flex flex-col">
+              {/* Deal Image */}
+              <div className="w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                <img 
+                  src={deal.imageUrl} 
+                  alt={deal.name} 
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-200" 
+                />
+              </div>
+              {/* Icon, Title, Status Row */}
+              <div className="flex items-center gap-3 mb-4 px-4">
+                <div className="card-icon-div">
+                  <svg className="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"> 
+                    {DealIconMap[deal.sector]}
+                  </svg>
+                </div>
+                <h3 className="card-heading flex-1">{deal.name}</h3>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  deal.status === 'Open' 
+                    ? 'bg-green-50 text-green-700' 
+                    : 'bg-red-50 text-red-700'
+                }`}>
+                  {deal.status || 'Open'}
+                </span>
+              </div>
+              {/* Sector & Stage Grid */}
+              <div className="grid grid-cols-2 gap-2 mb-4 px-4 justify-between">
+                <div className="card-paragraph2 flex flex-col items-start">
+                  <p className="text-sm font-medium text-gray-700">Sector:</p> <p className="text-sm">{deal.sector}</p>
+                </div>
+                <div className="card-paragraph2 flex flex-col items-start">
+                  <p className="text-sm font-medium text-gray-700">Stage:</p> <p className="text-sm">{deal.stage}</p>
+                </div>
+              </div>
+              {/* Ticket Size */}
+              <div className="card-paragraph mb-6 px-4 gap-2">
+                <p className="text-sm font-medium text-gray-700">Ticket Size:</p> <p className="text-sm">{deal.range}</p>
+              </div>
+              <Link href={`/deals/${deal.slug}`} className="w-full px-4 pb-4">
+                <Button 
+                  variant={'rounded'}
+                  className="w-full"
+                  disabled={deal.status === 'Closed'}
+                >
+                  Read More
+                </Button>
+              </Link>
+            </div>
           ))}
         </div>
         {dealsToShow.length === 0 && <div className="p-3 bg-white">

@@ -7,7 +7,9 @@ export const deals = [
     range: "₹50L - ₹2Cr",
     color: "bg-purple-100",
     icon: "document",
-    status: "Open"
+    status: "Open",
+    slug: "fintech-innovator",
+    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80"
   },
   // {
   //   id: 2,
@@ -17,7 +19,9 @@ export const deals = [
   //   range: "₹1Cr - ₹5Cr",
   //   color: "bg-purple-100",
   //   icon: "heart",
-  //   status: "Open"
+  //   status: "Open",
+  //   slug: "manufacturing-giant",
+  //   imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
   // },
   {
     id: 3,
@@ -27,7 +31,9 @@ export const deals = [
     range: "₹7.5Cr - ₹22.5Cr",
     color: "bg-purple-100",
     icon: "cart",
-    status: "Open"
+    status: "Open",
+    slug: "ecommerce-plus",
+    imageUrl: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 4,
@@ -37,7 +43,9 @@ export const deals = [
     range: "₹25L - ₹1Cr",
     color: "bg-purple-100",
     icon: "heart",
-    status: "Closed"
+    status: "Closed",
+    slug: "healthtech-pioneer",
+    imageUrl: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 5,
@@ -47,7 +55,9 @@ export const deals = [
     range: "₹2.25Cr - ₹5.25Cr",
     color: "bg-purple-100",
     icon: "bolt",
-    status: "Open"
+    status: "Open",
+    slug: "greenenergy-solutions",
+    imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 6,
@@ -57,7 +67,9 @@ export const deals = [
     range: "₹6Cr - ₹11.25Cr",
     color: "bg-purple-100",
     icon: "book",
-    status: "Closed"
+    status: "Closed",
+    slug: "edutech-innovator",
+    imageUrl: "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 8,
@@ -67,7 +79,9 @@ export const deals = [
     range: "₹15Cr - ₹30Cr",
     color: "bg-purple-100",
     icon: "shield",
-    status: "Open"
+    status: "Open",
+    slug: "cybersafe-solutions",
+    imageUrl: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 9,
@@ -77,7 +91,9 @@ export const deals = [
     range: "₹1.5Cr - ₹4.5Cr",
     color: "bg-purple-100",
     icon: "user-group",
-    status: "Open"
+    status: "Open",
+    slug: "womenlead-ventures",
+    imageUrl: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 10,
@@ -87,7 +103,9 @@ export const deals = [
     range: "₹7.5Cr - ₹18.75Cr",
     color: "bg-purple-100",
     icon: "cube",
-    status: "Open"
+    status: "Open",
+    slug: "blockchain-innovation",
+    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 12,
@@ -97,7 +115,9 @@ export const deals = [
     range: "₹22.5Cr - ₹45Cr",
     color: "bg-purple-100",
     icon: "cloud",
-    status: "Open"
+    status: "Open",
+    slug: "saas-platform",
+    imageUrl: "https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 13,
@@ -107,6 +127,8 @@ export const deals = [
     range: "₹9Cr - ₹16.5Cr",
     color: "bg-purple-100",
     icon: "shopping-bag",
-    status: "Open"
+    status: "Open",
+    slug: "d2c-brands-network",
+    imageUrl: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
   },
 ];
