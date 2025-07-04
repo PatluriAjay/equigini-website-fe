@@ -20,8 +20,8 @@ export default function Card({
         <Image src={imageUrl} alt={title}  width={100} height={100} className="w-full h-40 object-cover" />
       )}
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="card-heading mb-1 text-lg-override">{title}</h3>
-        <p className="card-paragraph mb-4">{description}</p>
+        <h3 className="card-heading mb-1 text-lg-override line-clamp-2 flex-1">{title}</h3>
+        <p className="card-paragraph mb-4 line-clamp-3">{description}</p>
         {children}
       </div>
     </div>

@@ -1,19 +1,8 @@
 "use client";
-import { useState } from "react";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import { deals } from "@/data/deals";
-import { DealIconMap } from "@/data/dealIcons";
+import { useState, useEffect } from "react";
+import DealsGrid from "@/components/DealsGrid";
 import styles from "@/styles/Select.module.css";
-import Link from "next/link";
-
-const filters = {
-  sectors: ["Technology", "Healthcare", "Finance", "Real Estate", "Energy", "Manufacturing"],
-  stages: ["Seed", "Series A", "Series B", "Series C", "Growth", "Pre-IPO"],
-  geographies: ["India", "USA", "Europe", "Asia", "Middle East", "Global"],
-  statuses: ["Open", "Coming Soon", "Closed"],
-  ticketSizes: ["₹50L - ₹2Cr", "₹7.5Cr - ₹22.5Cr"]
-};
+import { getAllSectors, getAllStages, getAllStatuses, getAllTicketSizes } from "@/services/api";
 
 function ChevronLeft({ disabled = false }) {
   return (
@@ -48,28 +37,97 @@ function ChevronRight({ disabled = false }) {
 const DEALS_PER_PAGE = 8;
 
 export default function DealsPage() {
-  const [page, setPage] = useState(1);
   const [selectedFilters, setSelectedFilters] = useState({
     sector: "",
     stage: "",
-    geography: "",
     status: "",
     ticketSize: ""
   });
 
-  // Filter deals based on selected filters
-  const filteredDeals = deals.filter(deal => {
-    return (!selectedFilters.sector || deal.sector === selectedFilters.sector) &&
-           (!selectedFilters.stage || deal.stage === selectedFilters.stage) &&
-           (!selectedFilters.geography || deal.geography === selectedFilters.geography) &&
-           (!selectedFilters.status || deal.status === selectedFilters.status) &&
-           (!selectedFilters.ticketSize || deal.range === selectedFilters.ticketSize);
+  const [filterOptions, setFilterOptions] = useState({
+    sectors: [],
+    stages: [],
+    statuses: [],
+    ticketSizes: []
   });
 
-  const totalPages = Math.ceil(filteredDeals.length / DEALS_PER_PAGE);
-  const startIdx = (page - 1) * DEALS_PER_PAGE;
-  const endIdx = startIdx + DEALS_PER_PAGE;
-  const dealsToShow = filteredDeals.slice(startIdx, endIdx);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  // Fetch filter options from APIs
+  useEffect(() => {
+    fetchFilterOptions();
+  }, []);
+
+  const fetchFilterOptions = async () => {
+    try {
+      setLoading(true);
+      
+      // Fetch all filter options in parallel
+      const [sectorsResponse, stagesResponse, statusesResponse, ticketSizesResponse] = await Promise.all([
+        getAllSectors(),
+        getAllStages(),
+        getAllStatuses(),
+        getAllTicketSizes()
+      ]);
+
+      setFilterOptions({
+        sectors: sectorsResponse.result_info || [],
+        stages: stagesResponse.result_info || [],
+        statuses: statusesResponse.result_info || [],
+        ticketSizes: ticketSizesResponse.result_info || []
+      });
+    } catch (error) {
+      console.error("Error fetching filter options:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Convert filters to dropdown options format for DealsGrid
+  const dropdownOptions = {
+    sectors: filterOptions.sectors.map(sector => ({ value: sector._id || sector.id, label: sector.name || sector.label })),
+    stages: filterOptions.stages.map(stage => ({ value: stage._id || stage.id, label: stage.name || stage.label })),
+    statuses: filterOptions.statuses.map(status => ({ value: status._id || status.id, label: status.name || status.label })),
+    ticketSizes: filterOptions.ticketSizes.map(size => ({ 
+      value: size._id || size.id, 
+      label: `${size.ticket_min} - ${size.ticket_max}` 
+    }))
+  };
+
+  // Reset page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [selectedFilters]);
+
+  // Handle total pages update from DealsGrid
+  const handleTotalPagesUpdate = (total) => {
+    setTotalPages(total);
+  };
+
+  if (loading) {
+    return (
+      <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
+        <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="banner-heading">Deals</h1>
+            <p className="banner-subheading">
+              Discover exclusive investment opportunities curated for you.
+            </p>
+          </div>
+        </div>
+        <div className="container mx-auto px-4 py-10 md:py-20">
+          <div className="flex justify-center items-center h-64">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primarycolor mx-auto mb-4"></div>
+              <div className="text-lg text-gray-600">Loading filters...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
@@ -84,7 +142,7 @@ export default function DealsPage() {
       </div>
       <div className="container mx-auto px-4 py-10 md:py-20">
         {/* Filters */}
-        <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           <div>
             <select
               value={selectedFilters.sector}
@@ -92,8 +150,10 @@ export default function DealsPage() {
               className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Sectors</option>
-              {filters.sectors.map(sector => (
-                <option key={sector} value={sector}>{sector}</option>
+              {filterOptions.sectors.map(sector => (
+                <option key={sector._id || sector.id} value={sector._id || sector.id}>
+                  {sector.name || sector.label}
+                </option>
               ))}
             </select>
           </div>
@@ -104,20 +164,10 @@ export default function DealsPage() {
               className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Stages</option>
-              {filters.stages.map(stage => (
-                <option key={stage} value={stage}>{stage}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <select
-              value={selectedFilters.geography}
-              onChange={(e) => setSelectedFilters(prev => ({ ...prev, geography: e.target.value }))}
-              className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
-            >
-              <option value="">All Geographies</option>
-              {filters.geographies.map(geography => (
-                <option key={geography} value={geography}>{geography}</option>
+              {filterOptions.stages.map(stage => (
+                <option key={stage._id || stage.id} value={stage._id || stage.id}>
+                  {stage.name || stage.label}
+                </option>
               ))}
             </select>
           </div>
@@ -128,8 +178,10 @@ export default function DealsPage() {
               className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Statuses</option>
-              {filters.statuses.map(status => (
-                <option key={status} value={status}>{status}</option>
+              {filterOptions.statuses.map(status => (
+                <option key={status._id || status.id} value={status._id || status.id}>
+                  {status.name || status.label}
+                </option>
               ))}
             </select>
           </div>
@@ -140,70 +192,28 @@ export default function DealsPage() {
               className={`w-full px-4 py-3 rounded-lg bg-white border-2 border-purple-600 text-gray-900 ${styles.customSelect}`}
             >
               <option value="">All Ticket Sizes</option>
-              {filters.ticketSizes.map(size => (
-                <option key={size} value={size}>{size}</option>
+              {filterOptions.ticketSizes.map(size => (
+                <option key={size._id || size.id} value={size._id || size.id}>
+                  {size.ticket_min} - {size.ticket_max}
+                </option>
               ))}
             </select>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {dealsToShow.map((deal) => (
-            <div key={deal.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100  flex flex-col">
-              {/* Deal Image */}
-              <div className="w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
-                <img 
-                  src={deal.imageUrl} 
-                  alt={deal.name} 
-                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-200" 
-                />
-              </div>
-              {/* Icon, Title, Status Row */}
-              <div className="flex items-center gap-3 mb-4 px-4">
-                <div className="card-icon-div">
-                  <svg className="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"> 
-                    {DealIconMap[deal.sector]}
-                  </svg>
-                </div>
-                <h3 className="card-heading flex-1">{deal.name}</h3>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  deal.status === 'Open' 
-                    ? 'bg-green-50 text-green-700' 
-                    : 'bg-red-50 text-red-700'
-                }`}>
-                  {deal.status || 'Open'}
-                </span>
-              </div>
-              {/* Sector & Stage Grid */}
-              <div className="grid grid-cols-2 gap-2 mb-4 px-4 justify-between">
-                <div className="card-paragraph2 flex flex-col items-start">
-                  <p className="text-sm font-medium text-gray-700">Sector:</p> <p className="text-sm">{deal.sector}</p>
-                </div>
-                <div className="card-paragraph2 flex flex-col items-start">
-                  <p className="text-sm font-medium text-gray-700">Stage:</p> <p className="text-sm">{deal.stage}</p>
-                </div>
-              </div>
-              {/* Ticket Size */}
-              <div className="card-paragraph mb-6 px-4 gap-2">
-                <p className="text-sm font-medium text-gray-700">Ticket Size:</p> <p className="text-sm">{deal.range}</p>
-              </div>
-              <Link href={`https://equigini-draft-v3.vercel.app/login`} target="_blank"  className="w-full px-4 pb-4">
-                <Button
-                  variant={"rounded"}
-                  className="w-full"
-                  // disabled={deal.status === "Closed"}
-                >
-                  Read More
-                </Button>
-              </Link>
-            </div>
-          ))}
-        </div>
-        {dealsToShow.length === 0 && <div className="p-3 bg-white">
-          <h3 className="text-center text-gray-600 font-medium text-xl">No Deals Found</h3>
-        </div>}
+        {/* DealsGrid Component */}
+        <DealsGrid 
+          layout="default"
+          filters={selectedFilters}
+          searchTerm=""
+          dropdownOptions={dropdownOptions}
+          maxDeals={DEALS_PER_PAGE}
+          currentPage={page}
+          onTotalPagesUpdate={handleTotalPagesUpdate}
+        />
+
         {/* Pagination Controls */}
-        {totalPages > 1 && (
+        {totalPages > 0 && (
           <div className="flex justify-center mt-10 gap-2 flex-wrap items-center">
             {/* Chevron Left */}
             {totalPages > 2 && <button

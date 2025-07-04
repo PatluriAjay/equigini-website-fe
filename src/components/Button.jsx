@@ -12,7 +12,7 @@ export default function Button({
     primaryoutline:
       "rounded-full bg-purple-600 text-white border border-purple-600 hover:bg-white hover:text-purple-600 focus:ring-transparent",
     secondary:
-      "rounded-md bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white focus:ring-transparent",
+      "rounded-full bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white focus:ring-transparent",
     outline:
       "rounded-md bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white focus:ring-transparent",
     rounded:

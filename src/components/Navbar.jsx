@@ -22,8 +22,9 @@ export default function Navbar() {
       <div className="container mx-auto flex flex-wrap items-center py-4 px-4 relative">
         {/* Left section - Logo */}
         <div className="flex items-center justify-between lg:justify-start w-full lg:w-[180px]">
-          {/* <span className="font-bold text-xl text-purple-600">EquiGini</span> */}
-          <Image src={"/logo.png"} width={120} height={60} alt="Logo" />
+          <Link href="/">
+            <Image src={"/logo.png"} width={120} height={60} alt="Logo" />
+          </Link>
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -94,13 +95,23 @@ export default function Navbar() {
             isMenuOpen ? "flex" : "hidden"
           } lg:flex w-full lg:w-[180px] items-center justify-center lg:justify-end mt-4 lg:mt-0 lg:ml-auto`}
         >
-          {/* Login/Register Button */}
-          {/* <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors w-full lg:w-auto whitespace-nowrap">
-            Login / Register
-          </button> */}
-          <Link href="https://equigini-draft-v3.vercel.app" target="_blank">
+          {/* Separate Login and Register Buttons */}
+          <Link
+            href="http://localhost:9000/login"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="w-full lg:w-auto mr-2 rounded-full " variant="secondary">
+              Login
+            </Button>
+          </Link>
+          <Link
+            href="http://localhost:9000/register"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button className="w-full lg:w-auto" variant="primaryoutline">
-              Login / Register
+              Register
             </Button>
           </Link>
         </div>

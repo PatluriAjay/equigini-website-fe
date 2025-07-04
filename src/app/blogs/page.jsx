@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import BlogsGrid from "@/components/BlogsGrid";
 
 function ChevronLeft({ disabled = false }) {
   return (
@@ -30,19 +31,17 @@ function ChevronRight({ disabled = false }) {
     </svg>
   );
 }
-import Card from "../../components/Card";
-import Button from "../../components/Button";
-import { blogs } from "../../data/blogs";
-import Link from "next/link";
 
-const BLOGS_PER_PAGE = 8;
+const BLOGS_PER_PAGE = 6;
 
 export default function BlogsPage() {
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(blogs.length / BLOGS_PER_PAGE);
-  const startIdx = (page - 1) * BLOGS_PER_PAGE;
-  const endIdx = startIdx + BLOGS_PER_PAGE;
-  const blogsToShow = blogs.slice(startIdx, endIdx);
+  const [totalPages, setTotalPages] = useState(1);
+
+  // Handle total pages update from BlogsGrid
+  const handleTotalPagesUpdate = (total) => {
+    setTotalPages(total);
+  };
 
   return (
     <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
@@ -51,34 +50,22 @@ export default function BlogsPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="banner-heading">Blogs</h1>
           <p className="banner-subheading">
-            Explore our latest insights, news, and investment tips.
+            Stay updated with the latest insights, trends, and analysis in the investment world.
           </p>
         </div>
       </div>
+      
       <div className="container mx-auto px-4 py-10 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {blogsToShow.map((blog, idx) => (
-            <div key={blog.id}>
-              <Card 
-                title={blog.title} 
-                imageUrl={blog.imageUrl} 
-                icon={null}
-              >
-                <p className="text-gray-600 text-sm line-clamp-2 mb-4">{blog.description}</p>
-                {idx == 0 && (
-                  <Link href="/blogs/ai-investments" className="w-full">
-                    <Button variant="primary" className="w-full mt-auto">Know More</Button>
-                  </Link>
-                )}
-                {idx !== 0 && (
-                  <Button variant="primary" className="mt-auto">Know More</Button>
-                )}
-              </Card>
-            </div>
-          ))}
-        </div>
+        {/* BlogsGrid Component */}
+        <BlogsGrid 
+          layout="default"
+          maxBlogs={BLOGS_PER_PAGE}
+          currentPage={page}
+          onTotalPagesUpdate={handleTotalPagesUpdate}
+        />
+
         {/* Pagination Controls */}
-        {totalPages > 1 && (
+        {totalPages > 0 && (
           <div className="flex justify-center mt-10 gap-2 flex-wrap items-center">
             {/* Chevron Left */}
             {totalPages > 2 && <button

@@ -10,9 +10,28 @@ import { DealIconMap } from "../data/dealIcons";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { getPublicHomeData } from "../services/api";
 
 
 export default function Home() {
+  const [publicData, setPublicData] = useState({ latest_blogs: [], latest_deals: [], testimonials: [] });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPublicData = async () => {
+      try {
+        const data = await getPublicHomeData();
+        setPublicData(data);
+      } catch (error) {
+        console.error('Error fetching public data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPublicData();
+  }, []);
+
   return (<>
     <div className="bg-gradient-to-b from-purple-50 to-purple-100">
       {/* Hero Section */}
@@ -28,7 +47,9 @@ export default function Home() {
           <Link href="/deals">
             <Button variant="primary" className="text-lg px-8">Explore Deals</Button>
           </Link>
+          <Link href="http://localhost:9000/register" target="_blank" rel="noopener noreferrer">
           <Button variant="outline" className="text-lg px-8">Register Now</Button>
+          </Link>
         </div>
       </section>
     </div>
@@ -122,48 +143,128 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {deals.slice(0, 3).map((deal) => (
-            <div key={deal.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 p-6 flex flex-col">
-              <div className="flex items-start mb-6 gap-3">
-                <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    {DealIconMap[deal.sector]}
-                  </svg>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[...Array(4)].map((_, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col relative animate-pulse">
+                <div className="w-full h-45 mb-4 rounded-lg bg-gray-200"></div>
+                <div className="flex items-center gap-3 mb-2 px-4">
+                  <div className="w-6 h-6 bg-gray-200 rounded"></div>
+                  <div className="flex-1">
+                    <div className="h-4 bg-gray-200 rounded mb-1"></div>
+                    <div className="h-3 bg-gray-200 rounded w-16"></div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="card-heading deal-heading-lg-override">{deal.name}</h3>
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    deal.status === 'Open' 
-                      ? 'bg-green-50 text-green-700' 
-                      : 'bg-red-50 text-red-700'
-                  }`}>
-                    {deal.status || 'Open'}
-                  </span>
+                <div className="grid grid-cols-2 gap-2 mb-2 px-4">
+                  <div className="h-8 bg-gray-200 rounded"></div>
+                  <div className="h-8 bg-gray-200 rounded"></div>
                 </div>
-              </div>
-              <div className="space-y-3 mb-6 flex-grow">
-                <div className="card-paragraph">
-                  <span className="text-sm">Sector: {deal.sector}</span>
+                <div className="px-4 mb-2">
+                  <div className="h-3 bg-gray-200 rounded mb-1"></div>
+                  <div className="h-3 bg-gray-200 rounded w-3/4"></div>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <span className="text-sm">Stage: {deal.stage}</span>
+                <div className="grid grid-cols-2 gap-2 mb-2 px-4">
+                  <div className="h-8 bg-gray-200 rounded"></div>
+                  <div className="h-8 bg-gray-200 rounded"></div>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <span className="text-sm">Ticket Size: {deal.range}</span>
+                <div className="w-full px-4 pb-4 mt-auto">
+                  <div className="h-10 bg-gray-200 rounded"></div>
                 </div>
               </div>
-              <Button 
-                variant={'primary'}
-                className="w-full"
-                disabled={deal.status === 'Closed'}
-                
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {publicData.latest_deals.slice(0, 4).map((deal) => (
+              <Link 
+                key={deal._id}
+                href="http://localhost:9000/login"
+                className="block"
               >
-                Know More
-              </Button>
-            </div>
-          ))}
-        </div>
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 flex flex-col relative group cursor-pointer h-full">
+                  {/* Deal Image */}
+                  <div className="w-full h-45 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center relative">
+                    {deal.image ? (
+                      <img
+                        src={`http://localhost:4000/${deal.image.path.replace(/\\/g, '/')}`}
+                        alt={deal.deal_title}
+                        className="object-cover w-full h-full hover:scale-105 transition-transform duration-200"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-4xl text-gray-300">
+                        {deal.deal_title.charAt(0)}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Icon, Title, Status Row */}
+                  <div className="flex items-center gap-3 mb-2 px-4">
+                    <div className="card-icon-div">
+                      {/* First try to use custom deal icon from backend, then fallback to sector-based icon */}
+                      {deal.deal_icon ? (
+                        <img 
+                          src={`http://localhost:4000/${deal.deal_icon.path.replace(/\\/g, '/')}`}
+                          alt={`${deal.sector} icon`}
+                          className="w-6 h-6 object-contain"
+                        />
+                      ) : (
+                        DealIconMap[deal.sector] || (
+                          <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">
+                            {deal.sector ? deal.sector.charAt(0) : 'D'}
+                          </div>
+                        )
+                      )}
+                    </div>
+                    <h3 className="card-heading text-secondary-override line-clamp-2 flex-1">
+                      {deal.deal_title}
+                    </h3>
+                    <span className="px-3 py-1 rounded-full text-sm font-medium bg-green-50 text-green-700">
+                      Open
+                    </span>
+                  </div>
+                  
+                  {/* Sector & Stage Grid */}
+                  <div className="grid grid-cols-2 gap-2 mb-2 px-4 justify-between">
+                    <div className="card-paragraph2 flex flex-col items-start">
+                      <p className="text-sm font-medium text-primarycolor">Sector:</p>
+                      <p className="text-sm">{deal.sector}</p>
+                    </div>
+                    <div className="card-paragraph2 flex flex-col items-start">
+                      <p className="text-sm font-medium text-primarycolor">Stage:</p>
+                      <p className="text-sm">{deal.stage}</p>
+                    </div>
+                  </div>
+                  
+                  {/* Description Paragraph */}
+                  <div className="px-4 mb-2">
+                    <p className="text-sm text-gray-700 line-clamp-2">
+                      {deal.summary}
+                    </p>
+                  </div>
+                  
+                  {/* Ticket Size & IRR */}
+                  <div className="grid grid-cols-2 gap-2 mb-2 px-4 justify-between">
+                    <div className="card-paragraph2 flex flex-col items-start">
+                      <p className="text-sm font-medium text-primarycolor">Ticket Size:</p>
+                      <p className="text-sm">{deal.ticket_size_range}</p>
+                    </div>
+                    <div className="card-paragraph2 flex flex-col items-start">
+                      <p className="text-sm font-medium text-primarycolor">Expected IRR:</p>
+                      <p className="text-sm">{deal.expected_irr || "-"}</p>
+                    </div>
+                  </div>
+                  
+                  {/* Read More Button */}
+                  <div className="w-full px-4 pb-4 mt-auto">
+                    <button className="px-6 py-1 md:py-2.5 text-sm md:text-xxl h-10 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 flex items-center justify-center rounded-lg bg-purple-600 text-white border border-purple-600 hover:bg-white hover:text-purple-600 focus:ring-transparent w-full">
+                      Know More
+                    </button>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </div>
     {/* How It Works Section */}
@@ -213,7 +314,9 @@ export default function Home() {
         </div>
 
         <div className="mt-12">
+          <Link href="http://localhost:9000/register" target="_blank" rel="noopener noreferrer">
           <Button variant="primary" className="text-lg px-8 mx-auto">Start Your Journey</Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -230,16 +333,33 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {blogs.slice(0, 4).map((blog, idx) => (
-            <Card key={blog.id} title={blog.title} description={blog.description} imageUrl={blog.imageUrl}>
-              {idx == 0 && <Link href="/blogs/ai-investments" className="w-full">
-                  <Button variant="primary" className="w-full mt-auto">Know More</Button>
-                </Link>}
-                {idx !== 0 && <Button variant="primary" className="mt-auto">Know More</Button>}
-            </Card>
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {[...Array(4)].map((_, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-pulse">
+                <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                <div className="h-3 bg-gray-200 rounded mb-4"></div>
+                <div className="h-10 bg-gray-200 rounded"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {publicData.latest_blogs.slice(0, 4).map((blog, idx) => (
+              <Card 
+                key={blog._id} 
+                title={blog.title} 
+                description={blog.excerpt} 
+                imageUrl={blog.featured_image ? `http://localhost:4000/${blog.featured_image.path.replace(/\\/g, '/')}` : '/next.svg'}
+              >
+                <Link href={`/blogs/${blog.slug}`} className="w-full">
+                  <Button variant="primary" className="w-full mt-auto">Read More</Button>
+                </Link>
+              </Card>
+            ))}
+          </div>
+        )}
       </section>
     </div>
 
@@ -248,17 +368,17 @@ export default function Home() {
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-16">What Our Investors Say</h2>
         {/* Carousel Implementation */}
-        <InvestorCarousel investors={investors} />
+        <InvestorCarousel testimonials={publicData.testimonials} loading={loading} />
       </div>
     </div>
   </>);
 
   // Carousel Component
 // Carousel Component - Replace the existing InvestorCarousel function with this
-function InvestorCarousel({ investors }) {
+function InvestorCarousel({ testimonials, loading }) {
   const [current, setCurrent] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const total = investors.length;
+  const total = testimonials?.length || 0;
 
   // Touch state for swipe
   const [touchStartX, setTouchStartX] = useState(null);
@@ -314,14 +434,42 @@ function InvestorCarousel({ investors }) {
     setTouchEndX(null);
   };
 
-  const getVisibleInvestors = () => {
+  const getVisibleTestimonials = () => {
+    if (!testimonials || testimonials.length === 0) return [];
     // For infinite loop, wrap around
     let result = [];
     for (let i = 0; i < itemsToShow; i++) {
-      result.push(investors[(current + i) % total]);
+      result.push(testimonials[(current + i) % total]);
     }
     return result;
   };
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[...Array(2)].map((_, idx) => (
+          <div key={idx} className="bg-gray-100 rounded-2xl p-6 md:p-8 animate-pulse">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-200 rounded-full"></div>
+              <div className="flex-1">
+                <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                <div className="h-3 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+            <div className="h-20 bg-gray-200 rounded"></div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (!testimonials || testimonials.length === 0) {
+    return (
+      <div className="text-center text-gray-500 py-8">
+        <p>No testimonials available at the moment.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative mx-auto">
@@ -346,24 +494,24 @@ function InvestorCarousel({ investors }) {
               onTouchMove={isMobile ? handleTouchMove : undefined}
               onTouchEnd={isMobile ? handleTouchEnd : undefined}
             >
-              {getVisibleInvestors().map((investor, idx) => (
+              {getVisibleTestimonials().map((testimonial, idx) => (
                 <div key={current + '-' + idx} className="bg-gray-100 rounded-2xl p-6 md:p-8">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
                       <Image 
-                        src={investor.image} 
-                        alt={investor.name}
+                        src={testimonial.user_img ? `http://localhost:4000/${testimonial.user_img.replace(/\\/g, '/')}` : '/next.svg'} 
+                        alt={testimonial.user_name}
                         fill
                         className="object-cover"
                       />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-lg md:text-xl font-semibold truncate">{investor.name}</h3>
-                      <p className="text-gray-500 font-semibold text-sm md:text-base truncate">{investor.position}</p>
+                      <h3 className="text-lg md:text-xl font-semibold truncate">{testimonial.user_name}</h3>
+                      <p className="text-gray-500 font-semibold text-sm md:text-base truncate">{testimonial.investor_type}</p>
                     </div>
                   </div>
                   <p className="text-black font-semibold italic text-sm md:text-base leading-relaxed">
-                    &ldquo;{investor.testimonial}&rdquo;
+                    &ldquo;{testimonial.message}&rdquo;
                   </p>
                 </div>
               ))}
@@ -384,18 +532,20 @@ function InvestorCarousel({ investors }) {
       </div>
 
       {/* Dots Indicator */}
-      <div className="flex justify-center mt-6 gap-2">
-        {Array.from({ length: maxIndex + 1 }, (_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              idx === current ? 'bg-purple-600' : 'bg-gray-300 hover:bg-gray-400'
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
+      {maxIndex > 0 && (
+        <div className="flex justify-center mt-6 gap-2">
+          {Array.from({ length: maxIndex + 1 }, (_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrent(idx)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                idx === current ? 'bg-purple-600' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
