@@ -11,12 +11,6 @@ export default function BlogDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (params.slug) {
-      fetchBlog();
-    }
-  }, [params.slug, fetchBlog]);
-
   const fetchBlog = useCallback(async () => {
     try {
       setLoading(true);
@@ -31,6 +25,12 @@ export default function BlogDetailPage() {
       setLoading(false);
     }
   }, [params.slug]);
+
+  useEffect(() => {
+    if (params.slug) {
+      fetchBlog();
+    }
+  }, [params.slug, fetchBlog]);
 
   // Helper function to construct image URL
   const getImageUrl = (imageData) => {

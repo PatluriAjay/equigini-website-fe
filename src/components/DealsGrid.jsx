@@ -230,6 +230,7 @@ export default function DealsGrid({
             key={deal.id}
             href="http://localhost:9000/login"
             className="block"
+            target="_blank"
           >
             <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 flex flex-col relative group cursor-pointer h-full">
               {/* Deal Image */}
