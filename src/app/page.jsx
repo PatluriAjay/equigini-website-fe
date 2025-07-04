@@ -351,7 +351,7 @@ export default function Home() {
                 key={blog._id} 
                 title={blog.title} 
                 description={blog.excerpt} 
-                imageUrl={blog.featured_image ? `http://localhost:4000/${blog.featured_image.path.replace(/\\/g, '/')}` : '/next.svg'}
+                imageUrl={blog.featured_image && blog.featured_image.path ? `http://localhost:4000/${blog.featured_image.path.replace(/\\/g, '/')}` : '/next.svg'}
               >
                 <Link href={`/blogs/${blog.slug}`} className="w-full">
                   <Button variant="primary" className="w-full mt-auto">Read More</Button>
