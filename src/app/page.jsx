@@ -498,11 +498,10 @@ function InvestorCarousel({ testimonials, loading }) {
                 <div key={current + '-' + idx} className="bg-gray-100 rounded-2xl p-6 md:p-8">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
-                      <Image 
+                      <img 
                         src={testimonial.user_img ? `http://localhost:4000/${testimonial.user_img.replace(/\\/g, '/')}` : '/next.svg'} 
                         alt={testimonial.user_name}
-                        fill
-                        className="object-cover"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     </div>
                     <div className="min-w-0">
