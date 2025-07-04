@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Loader from "@/components/Loader";
@@ -15,9 +15,9 @@ export default function BlogDetailPage() {
     if (params.slug) {
       fetchBlog();
     }
-  }, [params.slug]);
+  }, [params.slug, fetchBlog]);
 
-  const fetchBlog = async () => {
+  const fetchBlog = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -30,7 +30,7 @@ export default function BlogDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [params.slug]);
 
   // Helper function to construct image URL
   const getImageUrl = (imageData) => {

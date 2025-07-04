@@ -3,9 +3,19 @@ import Layout from "../components/Layout";
 
 export const metadata = {
   title: "Equigini | Digital Investment Banker",
+  description: "Digital Investment Banker - Discover exclusive investment opportunities",
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ]
   },
+  manifest: "/site.webmanifest"
 };
 
 export default function RootLayout({
@@ -13,14 +23,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-      <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="shortcut icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-        
-      </head>
       <body
         className={`antialiased pt-[72px] `}
       >
