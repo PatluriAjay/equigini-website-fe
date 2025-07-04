@@ -92,10 +92,10 @@ export const getAllStatuses = async () => {
   try {
     const response = await fetch(`${base_URL}getAllStatuses`);
     const data = await response.json();
-    return data.result_info || [];
+    return data; // Return the full object, not just data.result_info
   } catch (error) {
     console.error('Error fetching statuses:', error);
-    return [];
+    throw error;
   }
 };
 
