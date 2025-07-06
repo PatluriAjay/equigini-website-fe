@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { DealIconMap } from "../data/dealIcons";
 import { getAllDeals } from "../services/api";
 import Link from "next/link";
-import Loader from "./Loader";
+import SectionLoader from "./SectionLoader";
 
 export default function DealsGrid({ 
   maxDeals, 
@@ -167,7 +167,7 @@ export default function DealsGrid({
   const gridCols = layout === "compact" ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
   if (loading) {
-    return <Loader text="Loading deals..." />;
+    return <SectionLoader text="Loading deals..." size="large" />;
   }
 
   if (error) {
