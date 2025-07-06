@@ -60,6 +60,7 @@ export default function BlogsGrid({
       views: blog.views || 0,
       category: blog.category || '',
       tags: blog.tags || [],
+      status: blog.status || '',
       featured_image: getImageUrl(blog.featured_image),
       word_document: blog.word_document,
       created_at: blog.created_at || blog.createdAt,
@@ -67,9 +68,11 @@ export default function BlogsGrid({
     };
   };
 
-  // Transform all blogs
+  // Transform all blogs and filter out drafts
   const transformedBlogs = useMemo(() => {
-    return blogs.map(transformBlogData);
+    return blogs
+      .map(transformBlogData)
+      .filter(blog => blog.status !== 'draft');
   }, [blogs]);
 
   // Calculate total pages
