@@ -31,6 +31,14 @@ export default function BlogsGrid({
       } else if (blogsResponse.result_info) {
         setBlogs(blogsResponse.result_info);
       }
+      
+      // Debug: Log the first blog to check meta fields
+      if (blogsResponse.result_info && blogsResponse.result_info.length > 0) {
+        console.log("First blog meta fields:", {
+          meta_title: blogsResponse.result_info[0].meta_title,
+          meta_description: blogsResponse.result_info[0].meta_description
+        });
+      }
     } catch (error) {
       console.error("Error fetching blogs:", error);
       setError("Failed to fetch blogs. Please try again.");
@@ -61,6 +69,8 @@ export default function BlogsGrid({
       category: blog.category || '',
       tags: blog.tags || [],
       status: blog.status || '',
+      meta_title: blog.meta_title || '',
+      meta_description: blog.meta_description || '',
       featured_image: getImageUrl(blog.featured_image),
       word_document: blog.word_document,
       created_at: blog.created_at || blog.createdAt,
@@ -171,6 +181,13 @@ export default function BlogsGrid({
                 <p className="text-sm text-gray-600 mb-3 line-clamp-3">
                   {blog.excerpt}
                 </p>
+                
+                {/* Meta Description (if excerpt is empty) */}
+                {!blog.excerpt && blog.meta_description && (
+                  <p className="text-sm text-gray-600 mb-3 line-clamp-3">
+                    {blog.meta_description}
+                  </p>
+                )}
                 
                 {/* Category and Tags */}
                 <div className="flex flex-wrap gap-2 mb-3">

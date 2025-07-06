@@ -18,6 +18,14 @@ export default function BlogDetailPage() {
       
       const blogResponse = await getBlogBySlug(params.slug);
       setBlog(blogResponse.result_info);
+      
+      // Debug: Log the blog meta fields
+      if (blogResponse.result_info) {
+        console.log("Blog meta fields:", {
+          meta_title: blogResponse.result_info.meta_title,
+          meta_description: blogResponse.result_info.meta_description
+        });
+      }
     } catch (error) {
       console.error("Error fetching blog:", error);
       setError("Failed to fetch blog. Please try again.");
@@ -31,6 +39,92 @@ export default function BlogDetailPage() {
       fetchBlog();
     }
   }, [params.slug, fetchBlog]);
+
+  // Update document title and meta tags when blog data changes
+  useEffect(() => {
+    if (blog) {
+      // Update document title
+      document.title = `${blog.meta_title || blog.title} | Equigini`;
+      
+      // Update meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', blog.meta_description || blog.excerpt || "Read our latest blog post");
+      } else {
+        // Create meta description if it doesn't exist
+        const newMetaDescription = document.createElement('meta');
+        newMetaDescription.name = 'description';
+        newMetaDescription.content = blog.meta_description || blog.excerpt || "Read our latest blog post";
+        document.head.appendChild(newMetaDescription);
+      }
+
+      // Update Open Graph tags
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', blog.meta_title || blog.title);
+      } else {
+        const newOgTitle = document.createElement('meta');
+        newOgTitle.setAttribute('property', 'og:title');
+        newOgTitle.setAttribute('content', blog.meta_title || blog.title);
+        document.head.appendChild(newOgTitle);
+      }
+
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) {
+        ogDescription.setAttribute('content', blog.meta_description || blog.excerpt || "Read our latest blog post");
+      } else {
+        const newOgDescription = document.createElement('meta');
+        newOgDescription.setAttribute('property', 'og:description');
+        newOgDescription.setAttribute('content', blog.meta_description || blog.excerpt || "Read our latest blog post");
+        document.head.appendChild(newOgDescription);
+      }
+
+      // Update Twitter Card tags
+      const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twitterTitle) {
+        twitterTitle.setAttribute('content', blog.meta_title || blog.title);
+      } else {
+        const newTwitterTitle = document.createElement('meta');
+        newTwitterTitle.setAttribute('name', 'twitter:title');
+        newTwitterTitle.setAttribute('content', blog.meta_title || blog.title);
+        document.head.appendChild(newTwitterTitle);
+      }
+
+      const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+      if (twitterDescription) {
+        twitterDescription.setAttribute('content', blog.meta_description || blog.excerpt || "Read our latest blog post");
+      } else {
+        const newTwitterDescription = document.createElement('meta');
+        newTwitterDescription.setAttribute('name', 'twitter:description');
+        newTwitterDescription.setAttribute('content', blog.meta_description || blog.excerpt || "Read our latest blog post");
+        document.head.appendChild(newTwitterDescription);
+      }
+
+      // Update Open Graph image if available
+      if (blog.featured_image) {
+        const ogImage = document.querySelector('meta[property="og:image"]');
+        const imageUrl = getImageUrl(blog.featured_image);
+        if (ogImage) {
+          ogImage.setAttribute('content', imageUrl);
+        } else {
+          const newOgImage = document.createElement('meta');
+          newOgImage.setAttribute('property', 'og:image');
+          newOgImage.setAttribute('content', imageUrl);
+          document.head.appendChild(newOgImage);
+        }
+
+        const twitterImage = document.querySelector('meta[name="twitter:image"]');
+        if (twitterImage) {
+          twitterImage.setAttribute('content', imageUrl);
+        } else {
+          const newTwitterImage = document.createElement('meta');
+          newTwitterImage.setAttribute('name', 'twitter:image');
+          newTwitterImage.setAttribute('content', imageUrl);
+          document.head.appendChild(newTwitterImage);
+        }
+      }
+    }
+  }, [blog]);
 
   // Helper function to construct image URL
   const getImageUrl = (imageData) => {
@@ -79,29 +173,29 @@ export default function BlogDetailPage() {
   }
 
   return (
-    <div className="md:min-h-screen ">
-      {/* Back Button */}
-        {/* <div className="container mx-auto p-4">
-        <Link 
-          href="/blogs" 
-          className="inline-flex items-center text-purple-600 hover:text-purple-700 mb-6"
-        >
-          <svg className="w-4  mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Blogs
-        </Link>
-      </div> */}
-
+    <div className="md:min-h-screen">
       <div className="">
         {/* Blog Header */}
         <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
-        <div className=" mx-auto px-4 text-center">
-          <h2 className="banner-heading">  {blog.title}</h2>
+          <div className="mx-auto px-4 text-center">
+            <h2 className="banner-heading">{blog.title}</h2>
+            {/* Meta information */}
+            <div className="flex items-center justify-center text-sm text-gray-600 mt-4">
+              <span>Published on {new Date(blog.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}</span>
+              {/* {blog.read_time && (
+                <>
+                  <span className="mx-2">•</span>
+                  <span>{blog.read_time} min read</span>
+                </>
+              )} */}
+            </div>
+          </div>
         </div>
-      </div>
         <div className="container mx-auto px-4 py-10">
-
           {/* Featured Image */}
           {blog.featured_image && (
             <div className="w-full h-80 mb-8 rounded-xl overflow-hidden bg-gray-100">
@@ -126,7 +220,6 @@ export default function BlogDetailPage() {
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>
