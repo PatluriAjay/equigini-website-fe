@@ -514,7 +514,7 @@ function InvestorCarousel({ testimonials, loading }) {
                       {/* Right: Video */}
                       <div className="flex-1 flex items-center">
                         <video
-                          src={`http://localhost:4000/${testimonial.testimonial_video.path.replace(/\\/g, '/')}`}
+                          src={`http://localhost:4000/${(typeof testimonial.testimonial_video === 'string' ? testimonial.testimonial_video : testimonial.testimonial_video.path).replace(/\\/g, '/')}`}
                           controls
                           className="rounded-lg w-full max-w-md h-48"
                           style={{ background: "#000" }}
