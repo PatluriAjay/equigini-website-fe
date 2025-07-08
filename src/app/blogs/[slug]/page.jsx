@@ -140,43 +140,43 @@ export default function BlogDetailPage() {
 
   if (error) {
     return (
-      <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
-        <div className="container mx-auto px-4 py-20">
-          <div className="flex justify-center items-center h-64">
-            <div className="text-center">
-              <div className="text-lg text-red-600 mb-2">{error}</div>
-              <Link href="/blogs" className="btn-primary">
-                Back to Blogs
-              </Link>
+        <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
+          <div className="container mx-auto px-4 py-20">
+            <div className="flex justify-center items-center h-64">
+              <div className="text-center">
+                <div className="text-lg text-red-600 mb-2">{error}</div>
+                <Link href="/blogs" className="btn-primary">
+                  Back to Blogs
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 
   if (!blog) {
     return (
-      <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
-        <div className="container mx-auto px-4 py-20">
-          <div className="flex justify-center items-center h-64">
-            <div className="text-center">
-              <div className="text-lg text-gray-600 mb-2">Blog not found.</div>
-              <Link href="/blogs" className="btn-primary">
-                Back to Blogs
-              </Link>
+        <div className="md:min-h-screen bg-gradient-to-b from-purple-50 to-white">
+          <div className="container mx-auto px-4 py-20">
+            <div className="flex justify-center items-center h-64">
+              <div className="text-center">
+                <div className="text-lg text-gray-600 mb-2">Blog not found.</div>
+                <Link href="/blogs" className="btn-primary">
+                  Back to Blogs
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 
   return (
     <div className="md:min-h-screen">
-      <div className="">
-        {/* Blog Header */}
-        <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
+        <div className="">
+          {/* Blog Header */}
+          <div className="w-full bg-gradient-to-b from-purple-50 to-purple-100 py-20">
           <div className="mx-auto px-4 text-center">
             <h2 className="banner-heading">{blog.title}</h2>
             {/* Meta information */}
@@ -195,30 +195,30 @@ export default function BlogDetailPage() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto px-4 py-10">
-          {/* Featured Image */}
-          {blog.featured_image && (
-            <div className="w-full h-80 mb-8 rounded-xl overflow-hidden bg-gray-100">
-              <img
-                src={getImageUrl(blog.featured_image)}
-                alt={blog.title}
-                className="object-fill w-full h-full"
-              />
-            </div>
-          )}
-
-          {/* Blog Content */}
-          <div className="prose prose-lg max-w-none">
-            {blog.content ? (
-              <div 
-                dangerouslySetInnerHTML={{ __html: blog.content }}
-                className="text-gray-700 leading-relaxed [&>ol]:list-decimal [&>ol]:list-inside [&>ol]:space-y-2 [&>ol>li]:mb-2 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:space-y-2 [&>ul>li]:mb-2 [&>p]:mb-4 [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-3 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>strong]:font-bold [&>em]:italic"
-              />
-            ) : (
-              <div className="text-gray-600 text-center py-12">
-                <p>Content not available</p>
+          <div className="container mx-auto px-4 py-10">
+            {/* Featured Image */}
+            {blog.featured_image && (
+              <div className="w-full h-80 mb-8 rounded-xl overflow-hidden bg-gray-100">
+                <img
+                  src={getImageUrl(blog.featured_image)}
+                  alt={blog.title}
+                  className="object-fill w-full h-full"
+                />
               </div>
             )}
+
+            {/* Blog Content */}
+            <div className="prose prose-lg max-w-none">
+              {blog.content ? (
+                <div 
+                  dangerouslySetInnerHTML={{ __html: blog.content }}
+                  className="text-gray-700 leading-relaxed [&>ol]:list-decimal [&>ol]:list-inside [&>ol]:space-y-2 [&>ol>li]:mb-2 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:space-y-2 [&>ul>li]:mb-2 [&>p]:mb-4 [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-3 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>strong]:font-bold [&>em]:italic"
+                />
+              ) : (
+                <div className="text-gray-600 text-center py-12">
+                  <p>Content not available</p>
+                </div>
+              )}
           </div>
         </div>
       </div>

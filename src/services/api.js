@@ -3,7 +3,7 @@ export const base_URL_web_app = "http://localhost:9000/";
 
 export const getAllDeals = async () => {
   try {
-    const response = await fetch(`${base_URL}getAllDeals`);
+    const response = await fetch(`${base_URL}getDealsByVisibility/Public`);
     const result = await response.json();
 
     if (result.status === "E") {

@@ -394,7 +394,8 @@ function InvestorCarousel({ testimonials, loading }) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const itemsToShow = isMobile ? 1 : 2;
+  // Show 3 per row on large screens
+  const itemsToShow = isMobile ? 1 : 3;
   const maxIndex = Math.max(0, total - itemsToShow);
 
   // Infinite navigation
@@ -490,56 +491,31 @@ function InvestorCarousel({ testimonials, loading }) {
         <div className="flex-1 overflow-hidden">
           <div className="transition-all duration-500">
             <div
-              className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-2'}`}
+              className={`grid gap-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-3'}`}
               onTouchStart={isMobile ? handleTouchStart : undefined}
               onTouchMove={isMobile ? handleTouchMove : undefined}
               onTouchEnd={isMobile ? handleTouchEnd : undefined}
             >
               {getVisibleTestimonials().map((testimonial, idx) => (
-                <div key={current + '-' + idx} className="bg-gray-100 rounded-2xl p-6 md:p-8">
+                <div key={current + '-' + idx} className="bg-gray-100 rounded-2xl p-6 flex flex-col items-center text-center shadow h-full">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
+                    <img
+                      src={testimonial.user_img ? `http://localhost:4000/${testimonial.user_img.replace(/\\/g, '/')}` : '/next.svg'}
+                      alt={testimonial.user_name}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold mb-1">{testimonial.user_name}</h3>
+                  <p className="text-purple-600 text-sm font-semibold mb-4">{testimonial.investor_type}</p>
                   {testimonial.testimonial_type === "video" && testimonial.testimonial_video ? (
-                    <div className="flex items-center gap-6">
-                      {/* Left: Avatar, Name, Type */}
-                      <div className="flex flex-col items-center min-w-[100px]">
-                        <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 mb-2">
-                          <img 
-                            src={testimonial.user_img ? `http://localhost:4000/${testimonial.user_img.replace(/\\/g, '/')}` : '/next.svg'} 
-                            alt={testimonial.user_name}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          />
-                        </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-center">{testimonial.user_name}</h3>
-                        <p className="text-gray-500 font-semibold text-sm md:text-base text-center">{testimonial.investor_type}</p>
-                      </div>
-                      {/* Right: Video */}
-                      <div className="flex-1 flex items-center">
-                        <video
-                          src={`http://localhost:4000/${(typeof testimonial.testimonial_video === 'string' ? testimonial.testimonial_video : testimonial.testimonial_video.path).replace(/\\/g, '/')}`}
-                          controls
-                          className="rounded-lg w-full max-w-md h-48"
-                          style={{ background: "#000" }}
-                        />
-                      </div>
-                    </div>
+                    <video
+                      src={`http://localhost:4000/${(typeof testimonial.testimonial_video === 'string' ? testimonial.testimonial_video : testimonial.testimonial_video.path).replace(/\\/g, '/')}`}
+                      controls
+                      className="rounded-lg w-full h-48 object-cover bg-black mb-2"
+                      // style={{ minHeight: 192, maxHeight: 192 }}
+                    />
                   ) : (
-                    <>
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
-                          <img 
-                            src={testimonial.user_img ? `http://localhost:4000/${testimonial.user_img.replace(/\\/g, '/')}` : '/next.svg'} 
-                            alt={testimonial.user_name}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          />
-                        </div>
-                        <div className="min-w-0">
-                          <h3 className="text-lg md:text-xl font-semibold truncate">{testimonial.user_name}</h3>
-                          <p className="text-gray-500 font-semibold text-sm md:text-base truncate">{testimonial.investor_type}</p>
-                        </div>
-                      </div>
-                      <p className="text-black font-semibold italic text-sm md:text-base leading-relaxed">
-                        &ldquo;{testimonial.message}&rdquo;
-                      </p>
-                    </>
+                    <p className="text-black font-semibold italic text-sm md:text-base leading-relaxed">"{testimonial.message}"</p>
                   )}
                 </div>
               ))}
