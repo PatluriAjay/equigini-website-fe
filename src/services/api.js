@@ -1,18 +1,18 @@
 const base_URL = "http://localhost:4000/api/";
 export const base_URL_web_app = "http://localhost:9000/";
 
-export const getAllDeals = async () => {
+export const getActiveDeals = async () => {
   try {
-    const response = await fetch(`${base_URL}getDealsByVisibility/Public`);
+    const response = await fetch(`${base_URL}getActiveDeals`);
     const result = await response.json();
-
+    
     if (result.status === "E") {
-      throw new Error(result.error_info || "Failed to fetch deals");
+      throw new Error(result.error_info || "Failed to fetch active deals");
     }
-
+    
     return result;
   } catch (error) {
-    console.error("Error in getAllDeals:", error);
+    console.error("Error in getActiveDeals:", error);
     throw error;
   }
 };

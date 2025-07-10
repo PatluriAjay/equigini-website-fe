@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useMemo } from "react"; 
 import { DealIconMap } from "../data/dealIcons";
-import { getAllDeals } from "../services/api";
+import { getActiveDeals } from "../services/api";
 import Link from "next/link";
 import SectionLoader from "./SectionLoader";
 
@@ -33,7 +33,7 @@ export default function DealsGrid({
       setLoading(true);
       setError(null);
       
-      const dealsResponse = await getAllDeals();
+      const dealsResponse = await getActiveDeals();
       
       if (dealsResponse.result_info) {
         setDeals(dealsResponse.result_info);
@@ -87,9 +87,13 @@ export default function DealsGrid({
   const filteredDeals = useMemo(() => {
     let filtered = deals.map(transformDealData);
     
-    // Filter out private deals - only show public deals to investors
-    filtered = filtered.filter(deal => deal.visibility !== "Private");
+    // Log all deals before filtering for debugging
+    console.log("All deals before visibility filter:", filtered.map(d => ({ name: d.name, visibility: d.visibility })));
+    
+    // Filter to show only public deals
+    filtered = filtered.filter(deal => deal.visibility === "Public");
     console.log("After visibility filter (public only):", filtered.length);
+    console.log("Public deals:", filtered.map(d => d.name));
     
     // Apply search filter
     if (searchTerm && searchTerm.trim() !== "") {
@@ -271,9 +275,11 @@ export default function DealsGrid({
                 </h3>
                 <span
                   className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    deal.status === "Open"
+                    deal.status?.toLowerCase() === "open"
                       ? "bg-green-50 text-green-700"
-                      : "bg-red-50 text-red-700"
+                      : deal.status?.toLowerCase() === "closed"
+                      ? "bg-red-50 text-red-700"
+                      : "bg-gray-50 text-gray-700"
                   }`}
                 >
                   {deal.status || "Open"}

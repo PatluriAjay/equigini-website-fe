@@ -189,7 +189,7 @@ export default function DealsPage() {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-[70%] md:w-56  py-2 border-0 border-b-2 border-gray-200  focus:outline-none text-gray-700 placeholder-gray-400 rounded-none bg-transparent shadow-none"
+              className="w-[100%] md:w-[70%]  py-2 border-0 border-b-2 border-gray-200  focus:outline-none text-gray-700 placeholder-gray-400 rounded-none bg-transparent shadow-none"
             />
           </div>
           
@@ -197,14 +197,14 @@ export default function DealsPage() {
           <div className="md:hidden">
             <button
               onClick={handleOpenFilters}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+              className="px-2 py-2 bg-gray-200 text-black rounded-full hover:bg-gray-300 transition-colors flex items-center gap-2"
             >
-              <FiFilter size={22} />
+              <FiFilter size={22} color="black" />
             </button>
           </div>
           
           {/* Desktop Filters */}
-          <div className="flex flex-row flex-nowrap gap-3 items-center w-6/12">
+          <div className="hidden md:flex flex-row flex-nowrap gap-3 items-center w-8/12">
             <div className="flex-1">
               <select
                 value={selectedFilters.sector}
@@ -214,7 +214,7 @@ export default function DealsPage() {
                     sector: e.target.value,
                   }))
                 }
-                className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-600 focus:outline-none text-gray-700"
+                className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-600 focus:outline-none text-gray-700 bg-transparent"
               >
                 <option value="">All Sectors</option>
                 {filterOptions.sectors.map((sector) => (
@@ -236,7 +236,7 @@ export default function DealsPage() {
                     stage: e.target.value,
                   }))
                 }
-                className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-600 focus:outline-none text-gray-700"
+                className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-600 focus:outline-none text-gray-700 bg-transparent"
               >
                 <option value="">All Stages</option>
                 {filterOptions.stages.map((stage) => (
@@ -258,7 +258,7 @@ export default function DealsPage() {
                     ticketSize: e.target.value,
                   }))
                 }
-                className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-600 focus:outline-none text-gray-700"
+                className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-600 focus:outline-none text-gray-700 bg-transparent"
               >
                 <option value="">All Ticket Sizes</option>
                 {filterOptions.ticketSizes.map((size) => (

@@ -211,9 +211,16 @@ export default function BlogDetailPage() {
             <div className="prose prose-lg max-w-none">
               {blog.content ? (
                 <div 
-                  dangerouslySetInnerHTML={{ __html: blog.content }}
-                  className="text-gray-700 leading-relaxed [&>ol]:list-decimal [&>ol]:list-inside [&>ol]:space-y-2 [&>ol>li]:mb-2 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:space-y-2 [&>ul>li]:mb-2 [&>p]:mb-4 [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-3 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2 [&>strong]:font-bold [&>em]:italic"
-                />
+                dangerouslySetInnerHTML={{ __html: blog.content }}
+                className="text-gray-700 leading-relaxed
+                  [&>ol]:list-decimal [&>ol]:list-inside [&>ol]:space-y-2 [&>ol>li]:mb-2
+                  [&>ul]:list-disc [&>ul]:list-inside [&>ul]:space-y-2 [&>ul>li]:mb-2
+                  [&>p]:mb-4 
+                  [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mb-4
+                  [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-3
+                  [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mb-2
+                  [&>blockquote]:text-gray-500 [&>blockquote]:italic [&>blockquote]:border-l-4 [&>blockquote]:pl-4 [&>blockquote]:border-purple-300"
+               />
               ) : (
                 <div className="text-gray-600 text-center py-12">
                   <p>Content not available</p>

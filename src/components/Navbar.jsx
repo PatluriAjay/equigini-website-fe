@@ -7,7 +7,7 @@ import Button from "./Button";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "javacript:void()", label: "About" },
+  { href: "#", label: "About" },
   { href: "/deals", label: "Deals" },
   { href: "/blogs", label: "Blogs" },
   { href: "/contact", label: "Contact" },
@@ -93,7 +93,7 @@ export default function Navbar() {
         <div
           className={`${
             isMenuOpen ? "flex" : "hidden"
-          } lg:flex w-full lg:w-[180px] items-center justify-center lg:justify-end mt-4 lg:mt-0 lg:ml-auto`}
+          } lg:flex w-full lg:w-[180px] items-center flex-col md:flex-row justify-center lg:justify-end mt-4 lg:mt-0 lg:ml-auto gap-2`}
         >
           {/* Separate Login and Register Buttons */}
           <Link
