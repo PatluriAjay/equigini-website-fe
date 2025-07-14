@@ -109,8 +109,9 @@ export default function BlogsGrid({
 
   const gridCols = layout === "compact" ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
+  // Show SweetAlert loader during loading
   if (loading) {
-    return <Loader text="Loading blogs..." />;
+    return <Loader  />;
   }
 
   if (error) {

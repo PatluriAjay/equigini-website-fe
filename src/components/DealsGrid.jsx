@@ -170,8 +170,9 @@ export default function DealsGrid({
 
   const gridCols = layout === "compact" ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
+  // Show SweetAlert loader during loading
   if (loading) {
-    return <SectionLoader text="Loading deals..." size="large" />;
+    return <SectionLoader text="" size="large" />;
   }
 
   if (error) {

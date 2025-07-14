@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
 import Swal from 'sweetalert2';
 
-export default function SectionLoader({ size = "medium" }) {
+const SweetAlertLoader = ({ 
+  text = "", 
+  size = "default",
+  className = "",
+  showBackground = true 
+}) => {
   useEffect(() => {
     // Show SweetAlert loading
     Swal.fire({
-      // title: text,
+      title: text,
       allowOutsideClick: false,
       allowEscapeKey: false,
       showConfirmButton: false,
@@ -26,8 +31,10 @@ export default function SectionLoader({ size = "medium" }) {
     return () => {
       Swal.close();
     };
-  }, []);
+  }, [text]);
 
   // Return null since SweetAlert handles the UI
   return null;
-} 
+};
+
+export default SweetAlertLoader; 

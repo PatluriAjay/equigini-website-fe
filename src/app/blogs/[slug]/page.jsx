@@ -134,8 +134,9 @@ export default function BlogDetailPage() {
     return `${baseUrl}/${cleanPath}`;
   };
 
+  // Show SweetAlert loader during loading
   if (loading) {
-    return <Loader text="Loading blog..." />;
+    return <Loader  />;
   }
 
   if (error) {
