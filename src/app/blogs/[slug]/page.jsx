@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Loader from "@/components/Loader";
 import { getBlogBySlug } from "@/services/api";
 
@@ -200,9 +201,11 @@ export default function BlogDetailPage() {
             {/* Featured Image */}
             {blog.featured_image && (
               <div className="w-full h-80 mb-8 rounded-xl overflow-hidden bg-gray-100">
-                <img
+                <Image
                   src={getImageUrl(blog.featured_image)}
                   alt={blog.title}
+                  width={800}
+                  height={320}
                   className="object-fill w-full h-full"
                 />
               </div>

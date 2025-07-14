@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect, useMemo } from "react"; 
-import { DealIconMap } from "../data/dealIcons";
-import { getActiveDeals } from "../services/api";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { getActiveDeals } from "../services/api";
+import { DealIconMap } from "../data/dealIcons";
 import SectionLoader from "./SectionLoader";
 
 export default function DealsGrid({ 
@@ -33,7 +34,7 @@ export default function DealsGrid({
       setLoading(true);
       setError(null);
       
-      const dealsResponse = await getActiveDeals();
+              const dealsResponse = await getActiveDeals();
       
       if (dealsResponse.result_info) {
         setDeals(dealsResponse.result_info);
@@ -241,9 +242,11 @@ export default function DealsGrid({
               {/* Deal Image */}
               <div className="w-full h-45 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center relative">
                 {deal.imageUrl ? (
-                  <img
+                  <Image
                     src={deal.imageUrl}
                     alt={deal.name}
+                    width={400}
+                    height={180}
                     className="object-cover w-full h-full hover:scale-105 transition-transform duration-200"
                   />
                 ) : (
@@ -258,9 +261,11 @@ export default function DealsGrid({
                 <div className="card-icon-div ">
                   {/* First try to use custom deal icon from backend, then fallback to sector-based icon */}
                   {deal.dealIconUrl ? (
-                    <img 
+                    <Image 
                       src={deal.dealIconUrl} 
                       alt={`${deal.sector} icon`}
+                      width={24}
+                      height={24}
                       className="w-6 h-6 object-contain"
                     />
                   ) : (

@@ -282,12 +282,14 @@ export default function Home() {
                     {/* Deal Image */}
                     <div className="w-full h-45 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center relative">
                       {deal.image ? (
-                        <img
+                        <Image
                           src={`http://localhost:4000/${deal.image.path.replace(
                             /\\/g,
                             "/"
                           )}`}
                           alt={deal.deal_title}
+                          width={400}
+                          height={180}
                           className="object-cover w-full h-full hover:scale-105 transition-transform duration-200"
                         />
                       ) : (
@@ -302,12 +304,14 @@ export default function Home() {
                       <div className="card-icon-div">
                         {/* First try to use custom deal icon from backend, then fallback to sector-based icon */}
                         {deal.deal_icon ? (
-                          <img
+                          <Image
                             src={`http://localhost:4000/${deal.deal_icon.path.replace(
                               /\\/g,
                               "/"
                             )}`}
                             alt={`${deal.sector} icon`}
+                            width={24}
+                            height={24}
                             className="w-6 h-6 object-contain"
                           />
                         ) : (
@@ -713,7 +717,7 @@ export default function Home() {
                     className="bg-gray-100 rounded-2xl p-6 flex flex-col items-center text-center shadow h-full"
                   >
                     <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
-                      <img
+                      <Image
                         src={
                           testimonial.user_img
                             ? `http://localhost:4000/${testimonial.user_img.replace(
@@ -723,6 +727,8 @@ export default function Home() {
                             : "/next.svg"
                         }
                         alt={testimonial.user_name}
+                        width={64}
+                        height={64}
                         className="object-cover w-full h-full"
                       />
                     </div>
@@ -746,7 +752,7 @@ export default function Home() {
                       />
                     ) : (
                       <p className="text-black font-semibold italic text-sm md:text-base leading-relaxed">
-                        "{testimonial.message}"
+                        &ldquo;{testimonial.message}&rdquo;
                       </p>
                     )}
                   </div>

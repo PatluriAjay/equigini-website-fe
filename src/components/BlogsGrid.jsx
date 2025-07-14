@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect, useMemo } from "react"; 
+import React, { useState, useEffect, useMemo } from "react";
 import { getAllBlogs } from "../services/api";
 import Link from "next/link";
+import Image from "next/image";
 import Loader from "./Loader";
 
 export default function BlogsGrid({ 
@@ -159,9 +160,11 @@ export default function BlogsGrid({
               {/* Blog Image */}
               <div className="w-full h-48 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center relative">
                 {blog.featured_image ? (
-                  <img
+                  <Image
                     src={blog.featured_image}
                     alt={blog.title}
+                    width={400}
+                    height={192}
                     className="object-fill w-full h-full hover:scale-105 transition-transform duration-200"
                   />
                 ) : (
